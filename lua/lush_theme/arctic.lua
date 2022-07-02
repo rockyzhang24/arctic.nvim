@@ -8,6 +8,7 @@ local norm_bg = '#1E1E1E'
 local violet = '#646695'
 local blue = '#569CD6'
 local light_blue = '#9CDCFE'
+local bright_blue = '#18a3ff'
 local green = '#6A9955'
 local blue_green = '#4EC9B0'
 local light_green = '#B5CEA8'
@@ -32,11 +33,14 @@ local warn_yellow = '#CCA700'
 local info_blue = '#3794ff'
 local hint_grey = '#B0B0B0'
 
+local selection_blue = '#094771'
+
 ---@diagnostic disable
 local theme = lush(function()
   return {
 
-    SuggestBorder { fg = '#454545' },
+    SuggestWidgetBorder { fg = '#454545', bg = black3 },
+    SuggestWidgetSelect { bg = selection_blue },
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
@@ -78,7 +82,7 @@ local theme = lush(function()
     -- NormalFloat { },
     -- NormalNC { },
     Pmenu { fg = norm_fg, bg = black3 },
-    PmenuSel { fg = white, bg = '#094771' },
+    PmenuSel { fg = white, bg = selection_blue },
     PmenuSbar { bg = black3 },
     PmenuThumb { bg = '#474747' },
     Question { fg = blue },
@@ -89,7 +93,7 @@ local theme = lush(function()
     SpellCap { gui = 'undercurl', sp = warn_yellow},
     SpellLocal { gui = 'undercurl', sp = info_blue },
     SpellRare  { gui = 'undercurl', sp = info_blue  },
-    -- StatusLine { },
+    StatusLine { bg = black3 },
     -- StatusLineNC { },
     TabLine { fg = '#8f8f8f', bg = black2 },
     TabLineFill { fg = 'NONE', bg = black3 },
@@ -150,7 +154,7 @@ local theme = lush(function()
     LspReferenceWrite { SelectionHighlightBackground },
     LspCodeLens { CodeLens },
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
-    LspSignatureActiveParameter { fg = '#18a3ff' },
+    LspSignatureActiveParameter { fg = bright_blue },
 
     DiagnosticError { fg = error_red },
     DiagnosticWarn { fg = warn_yellow },
@@ -242,6 +246,19 @@ local theme = lush(function()
     TSTypeBuiltin { fg = blue_green },
     TSVariable { fg = norm_fg },
     TSVariableBuiltin { fg = blue },
+
+    -- nvim-cmp
+    CmpItemAbbrDeprecated { fg = grey3, bg = 'NONE', gui = 'strikethrough' },
+    CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
+    CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
+    CmpItemKindVariable { fg = light_blue, bg = 'NONE' },
+    CmpItemKindInterface { CmpItemKindVariable },
+    CmpItemKindText { CmpItemKindVariable },
+    CmpItemKindFunction { fg = pink, bg = 'NONE' },
+    CmpItemKindMethod { CmpItemKindFunction },
+    CmpItemKindKeyword { fg = norm_fg, bg = 'NONE' },
+    CmpItemKindProperty { CmpItemKindKeyword },
+    CmpItemKindUnit { CmpItemKindKeyword },
   }
 end)
 ---@diagnostic enable
