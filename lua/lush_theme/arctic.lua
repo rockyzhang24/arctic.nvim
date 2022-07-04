@@ -39,6 +39,7 @@ local selection_blue = '#094771'
 local theme = lush(function()
   return {
 
+    -- Preset
     SuggestWidgetBorder { fg = '#454545', bg = black3 },
     SuggestWidgetSelect { bg = selection_blue },
     SelectionHighlightBackground { bg = '#333a40' },
@@ -47,7 +48,9 @@ local theme = lush(function()
     GutterGitModified { fg = '#1b81a8' },
     GutterGitAdded { fg = '#487e02' },
     GutterGitDeleted { fg = '#f14c4c' },
+    Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
 
+    -- Editor
     ColorColumn { bg = black },
     Conceal { fg = grey2 },
     Cursor { fg = grey, bg = '#aeafad' },
@@ -105,7 +108,10 @@ local theme = lush(function()
     Whitespace { fg = '#3e3e3d' },
     -- Winseparator { },
     WildMenu { PmenuSel },
+    Winbar { Breadcrumb },
+    WinbarNC { Breadcrumb },
 
+    -- Symtax
     Comment { fg = green, gui = 'italic' },
 
     Constant { fg = blue },
@@ -149,6 +155,7 @@ local theme = lush(function()
     Error { fg = error_red },
     Todo { fg = norm_bg, bg = yellow_orange, gui = 'bold' },
 
+    -- LSP
     LspReferenceText { SelectionHighlightBackground },
     LspReferenceRead { SelectionHighlightBackground },
     LspReferenceWrite { SelectionHighlightBackground },
@@ -156,6 +163,7 @@ local theme = lush(function()
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
     LspSignatureActiveParameter { fg = bright_blue },
 
+    -- Diagnostics
     DiagnosticError { fg = error_red },
     DiagnosticWarn { fg = warn_yellow },
     DiagnosticInfo { fg = info_blue },
@@ -251,14 +259,89 @@ local theme = lush(function()
     CmpItemAbbrDeprecated { fg = grey3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
-    CmpItemKindVariable { fg = light_blue, bg = 'NONE' },
-    CmpItemKindInterface { CmpItemKindVariable },
-    CmpItemKindText { CmpItemKindVariable },
-    CmpItemKindFunction { fg = pink, bg = 'NONE' },
-    CmpItemKindMethod { CmpItemKindFunction },
-    CmpItemKindKeyword { fg = norm_fg, bg = 'NONE' },
-    CmpItemKindProperty { CmpItemKindKeyword },
-    CmpItemKindUnit { CmpItemKindKeyword },
+
+    CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
+    CmpItemKindMethod { fg = '#b180d7', bg = 'NONE' },
+    CmpItemKindFunction { CmpItemKindMethod },
+    CmpItemKindConstructor { CmpItemKindFunction },
+    CmpItemKindField { fg = '#75beff', bg = 'NONE' },
+    CmpItemKindVariable { CmpItemKindField },
+    CmpItemKindClass { fg = '#ee9d28', bg = 'NONE' },
+    CmpItemKindInterface { CmpItemKindField },
+    CmpItemKindModule { CmpItemKindText },
+    CmpItemKindProperty { CmpItemKindText },
+    CmpItemKindUnit { CmpItemKindText },
+    CmpItemKindValue { CmpItemKindText },
+    CmpItemKindEnum { CmpItemKindClass },
+    CmpItemKindKeyword { CmpItemKindText },
+    CmpItemKindSnippet { CmpItemKindText },
+    CmpItemKindColor { CmpItemKindText },
+    CmpItemKindFile { CmpItemKindText },
+    CmpItemKindReference { CmpItemKindText },
+    CmpItemKindFolder { CmpItemKindText },
+    CmpItemKindEnumMember { CmpItemKindField },
+    CmpItemKindConstant { CmpItemKindText },
+    CmpItemKindStruct { CmpItemKindText },
+    CmpItemKindEvent { CmpItemKindClass },
+    CmpItemKindOperator { CmpItemKindText },
+    CmpItemKindTypeParameter { CmpItemKindText },
+
+    -- aerial
+    -- Same with the corresponding one in CmpItemKind above
+    AerialTextIcon { CmpItemKindText },
+    AerialMethodIcon { CmpItemKindMethod },
+    AerialFunctionIcon { CmpItemKindFunction },
+    AerialConstructorIcon { CmpItemKindConstructor },
+    AerialFieldIcon { CmpItemKindField },
+    AerialVariableIcon { CmpItemKindVariable },
+    AerialClassIcon { CmpItemKindClass },
+    AerialInterfaceIcon { CmpItemKindInterface },
+    AerialModuleIcon { CmpItemKindModule },
+    AerialPropertyIcon { CmpItemKindProperty },
+    AerialUnitIcon { CmpItemKindUnit },
+    AerialValueIcon { CmpItemKindValue },
+    AerialEnumIcon { CmpItemKindEnum },
+    AerialKeywordIcon { CmpItemKindKeyword },
+    AerialSnippetIcon { CmpItemKindSnippet },
+    AerialColorIcon { CmpItemKindColor },
+    AerialFileIcon { CmpItemKindFile },
+    AerialReferenceIcon { CmpItemKindReference },
+    AerialFolderIcon { CmpItemKindFolder },
+    AerialEnumMemberIcon { CmpItemKindEnumMember },
+    AerialConstantIcon { CmpItemKindConstant },
+    AerialStructIcon { CmpItemKindStruct },
+    AerialEventIcon { CmpItemKindEvent },
+    AerialOperatorIcon { CmpItemKindOperator },
+    AerialTypeParameterIcon { CmpItemKindTypeParameter },
+
+    -- gitsigns
+    GitSignsAdd { GutterGitAdded },
+    GitSignsChange { GutterGitModified },
+    GitSignsDelete { GutterGitDeleted },
+    GitSignsAddNr { GitSignsAdd },
+    GitSignsChangeNr { GitSignsChange },
+    GitSignsDeleteNr { GitSignsDelete },
+    GitSignsAddLn { DiffAdd },
+    GitSignsChangeLn { DiffChange },
+
+    -- vim-illuminate
+    illuminatedWord { SelectionHighlightBackground },
+    illuminatedCurWord { SelectionHighlightBackground },
+
+    -- telescope
+    TelescopeBorder { fg = '#454545' },
+    TelescopePromptBorder { TelescopeBorder },
+    TelescopeResultsBorder { TelescopePromptBorder },
+    TelescopePreviewBorder { TelescopePromptBorder },
+    TelescopeSelection { PmenuSel },
+    TelescopeMatching { CmpItemAbbrMatch },
+    TelescopeNormal { fg = '#cccccc' },
+    TelescopePromptPrefix { TelescopeNormal },
+
+    -- fFHighlight
+    fFHintWords { gui = 'underline', sp = 'yellow' },
+    fFHintCurrentWord { gui = 'undercurl', sp = 'yellow' },
+
   }
 end)
 ---@diagnostic enable
