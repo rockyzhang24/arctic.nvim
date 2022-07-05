@@ -5,7 +5,6 @@ local lush = require('lush')
 local norm_fg = '#D4D4D4'
 local norm_bg = '#1E1E1E'
 
-local violet = '#646695'
 local blue = '#569CD6'
 local light_blue = '#9CDCFE'
 local bright_blue = '#18a3ff'
@@ -20,10 +19,9 @@ local yellow = '#DCDCAA'
 local pink = '#C586C0'
 
 local white = '#ffffff'
-local silver = '#C0C0C0'
-local grey = '#51504f'
-local grey2 = '#858585' -- fg for Conceal, LineNr, NonText
-local grey3 = '#808080' -- fg for TSTagDelimiter like `<` `>` `/`
+local gray = '#51504f'
+local gray2 = '#858585' -- fg for Conceal, LineNr, NonText
+local gray3 = '#808080' -- fg for TSTagDelimiter like `<` `>` `/`
 local black = '#222222' -- bg for CursorLine, ColorColumn
 local black2 = '#2d2d2d' -- bg for TabLine, DiagnosticVirtualTextHint
 local black3 = '#252526' -- bg for Pmenu, PmenuSbar, TabLineFill, Statusline
@@ -31,7 +29,7 @@ local black3 = '#252526' -- bg for Pmenu, PmenuSbar, TabLineFill, Statusline
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
 local info_blue = '#3794ff'
-local hint_grey = '#B0B0B0'
+local hint_gray = '#B0B0B0'
 
 local selection_blue = '#094771'
 local float_border_fg = '#454545'
@@ -54,8 +52,8 @@ local theme = lush(function()
 
     -- Editor
     ColorColumn { bg = black },
-    Conceal { fg = grey2 },
-    Cursor { fg = grey, bg = '#aeafad' },
+    Conceal { fg = gray2 },
+    Cursor { fg = gray, bg = '#aeafad' },
     -- lCursor { },
     -- CursorIM { },
     CursorLine { bg = black },
@@ -70,19 +68,19 @@ local theme = lush(function()
     -- TermCursorNC { },
     ErrorMsg { fg = error_red },
     VertSplit { fg = '#444444' },
-    LineNr { fg = grey2 },
+    LineNr { fg = gray2 },
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = '#202d39' },
     FoldColumn { LineNr }, -- vscode uses #c5c5c5, which is too bright
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
     -- Substitute { },
-    MatchParen { bg = grey, gui = 'bold, underline' },
+    MatchParen { bg = gray, gui = 'bold, underline' },
     ModeMsg { fg = norm_fg },
     -- MsgArea { },
     -- MsgSeparator { },
     MoreMsg { fg = norm_fg },
-    NonText { fg = grey2 },
+    NonText { fg = gray2 },
     Normal { fg = norm_fg, bg = norm_bg },
     -- NormalFloat { },
     -- NormalNC { },
@@ -170,7 +168,7 @@ local theme = lush(function()
     DiagnosticError { fg = error_red },
     DiagnosticWarn { fg = warn_yellow },
     DiagnosticInfo { fg = info_blue },
-    DiagnosticHint { fg = hint_grey },
+    DiagnosticHint { fg = hint_gray },
     DiagnosticVirtualTextError { DiagnosticError, bg = '#332323' },
     DiagnosticVirtualTextWarn { DiagnosticWarn, bg = '#2f2c1b' },
     DiagnosticVirtualTextInfo { DiagnosticInfo, bg = '#212a35' },
@@ -178,7 +176,7 @@ local theme = lush(function()
     DiagnosticUnderlineError { gui = 'undercurl', sp = error_red },
     DiagnosticUnderlineWarn { gui = 'undercurl', sp = warn_yellow },
     DiagnosticUnderlineInfo { gui = 'undercurl', sp = info_blue },
-    DiagnosticUnderlineHint { gui = 'undercurl', sp = hint_grey },
+    DiagnosticUnderlineHint { gui = 'undercurl', sp = hint_gray },
     DiagnosticFloatingError { DiagnosticError },
     DiagnosticFloatingWarn { DiagnosticWarn },
     DiagnosticFloatingInfo { DiagnosticInfo },
@@ -237,7 +235,7 @@ local theme = lush(function()
     -- TSSymbol { },
     TSTag { fg = blue },
     -- TSTagAttribute { },
-    TSTagDelimiter { fg = grey3 },
+    TSTagDelimiter { fg = gray3 },
     TSText { fg = norm_fg },
     TSStrong { fg = norm_fg, gui = 'bold' },
     TSEmphasis { fg = norm_fg, gui = 'italic' },
@@ -259,7 +257,7 @@ local theme = lush(function()
     TSVariableBuiltin { fg = blue },
 
     -- nvim-cmp
-    CmpItemAbbrDeprecated { fg = grey3, bg = 'NONE', gui = 'strikethrough' },
+    CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
 
