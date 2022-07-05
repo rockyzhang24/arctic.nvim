@@ -26,7 +26,7 @@ local grey2 = '#858585' -- fg for Conceal, LineNr, NonText
 local grey3 = '#808080' -- fg for TSTagDelimiter like `<` `>` `/`
 local black = '#222222' -- bg for CursorLine, ColorColumn
 local black2 = '#2d2d2d' -- bg for TabLine, DiagnosticVirtualTextHint
-local black3 = '#252526' -- bg for Pmenu, PmenuSbar, TabLineFill
+local black3 = '#252526' -- bg for Pmenu, PmenuSbar, TabLineFill, Statusline
 
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
@@ -34,14 +34,16 @@ local info_blue = '#3794ff'
 local hint_grey = '#B0B0B0'
 
 local selection_blue = '#094771'
+local float_border_fg = '#454545'
+local float_normal_fg = '#cccccc'
+local indent_guide_fg = '#404040'
+local indent_guide_context_fg = '#707070'
 
 ---@diagnostic disable
 local theme = lush(function()
   return {
 
     -- Preset
-    SuggestWidgetBorder { fg = '#454545', bg = black3 },
-    SuggestWidgetSelect { bg = selection_blue },
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
@@ -110,6 +112,7 @@ local theme = lush(function()
     WildMenu { PmenuSel },
     Winbar { Breadcrumb },
     WinbarNC { Breadcrumb },
+    FloatBorder { fg = float_border_fg },
 
     -- Symtax
     Comment { fg = green, gui = 'italic' },
@@ -260,7 +263,10 @@ local theme = lush(function()
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
 
-    CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
+    SuggestWidgetBorder { fg = float_border_fg },
+    SuggestWidgetSelect { bg = selection_blue },
+
+    CmpItemKindText { fg = float_normal_fg, bg = 'NONE' },
     CmpItemKindMethod { fg = '#b180d7', bg = 'NONE' },
     CmpItemKindFunction { CmpItemKindMethod },
     CmpItemKindConstructor { CmpItemKindFunction },
@@ -286,7 +292,7 @@ local theme = lush(function()
     CmpItemKindOperator { CmpItemKindText },
     CmpItemKindTypeParameter { CmpItemKindText },
 
-    -- aerial
+    -- Aerial
     -- Same with the corresponding one in CmpItemKind above
     AerialTextIcon { CmpItemKindText },
     AerialMethodIcon { CmpItemKindMethod },
@@ -314,7 +320,7 @@ local theme = lush(function()
     AerialOperatorIcon { CmpItemKindOperator },
     AerialTypeParameterIcon { CmpItemKindTypeParameter },
 
-    -- gitsigns
+    -- Gitsigns
     GitSignsAdd { GutterGitAdded },
     GitSignsChange { GutterGitModified },
     GitSignsDelete { GutterGitDeleted },
@@ -328,19 +334,31 @@ local theme = lush(function()
     illuminatedWord { SelectionHighlightBackground },
     illuminatedCurWord { SelectionHighlightBackground },
 
-    -- telescope
-    TelescopeBorder { fg = '#454545' },
+    -- Telescope
+    TelescopeBorder { fg = float_border_fg },
     TelescopePromptBorder { TelescopeBorder },
     TelescopeResultsBorder { TelescopePromptBorder },
     TelescopePreviewBorder { TelescopePromptBorder },
     TelescopeSelection { PmenuSel },
     TelescopeMatching { CmpItemAbbrMatch },
-    TelescopeNormal { fg = '#cccccc' },
+    TelescopeNormal { fg = float_normal_fg },
     TelescopePromptPrefix { TelescopeNormal },
+
+    -- Harpoon
+    HarpoonBorder { TelescopeBorder },
+    HarpoonWindow { TelescopeNormal },
 
     -- fFHighlight
     fFHintWords { gui = 'underline', sp = 'yellow' },
     fFHintCurrentWord { gui = 'undercurl', sp = 'yellow' },
+
+    -- indent-blankline
+    IndentBlanklineChar { fg = indent_guide_fg },
+    IndentBlanklineSpaceChar { IndentBlanklineChar },
+    IndentBlanklineSpaceCharBlankline { IndentBlanklineChar },
+    IndentBlanklineContextChar { fg = indent_guide_context_fg },
+    IndentBlanklineContextSpaceChar { IndentBlanklineContextChar },
+    IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
 
   }
 end)
