@@ -6,6 +6,10 @@ A Neovim theme ported from the VSCode Dark+ theme.
 
 </div>
 
+<img width="1774" alt="Screen Shot 2022-07-06 at 21 48 33" src="https://user-images.githubusercontent.com/11582667/177693625-839f1c10-0539-4bba-968d-451b0527a659.png">
+
+## Introduction
+
 I fell in love with VSCode Dark+ theme at first sight. At that time, I made up
 my mind that I would port it to Neovim. Now, here it is. All the colors are
 defined as strictly and precisely as possible, including the editor itself and
