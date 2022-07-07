@@ -6,7 +6,7 @@ A Neovim theme ported from the VSCode Dark+ theme.
 
 </div>
 
-<img width="1774" alt="Screen Shot 2022-07-06 at 21 48 33" src="https://user-images.githubusercontent.com/11582667/177693625-839f1c10-0539-4bba-968d-451b0527a659.png">
+<img width="1774" alt="Screen Shot 2022-07-07 at 13 51 44" src="https://user-images.githubusercontent.com/11582667/177871063-15dc3f88-8d2c-4c2f-8a92-65da8baad3e2.png">
 
 ## Introduction
 
@@ -56,5 +56,4 @@ gives you real time feedback. For details regarding how to use `lush.nvim`, see
 
 ## Screenshots
 
-<img width="1774" alt="Screen Shot 2022-07-07 at 09 11 21" src="https://user-images.githubusercontent.com/11582667/177821293-734f1197-c4c0-4d97-910a-a008e6908674.png">
-
+<img width="1774" alt="Screen Shot 2022-07-07 at 14 03 54" src="https://user-images.githubusercontent.com/11582667/177871081-7e1e84b5-0456-491e-b3fc-2938eb4a1181.png">
