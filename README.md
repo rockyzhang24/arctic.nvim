@@ -53,3 +53,8 @@ easy. Just open `arctic.nvim/lua/lush_theme/arctic.lua` and execute `:Lushify`.
 Then you can adjust colors or relink highlight groups to suit your taste, and it
 gives you real time feedback. For details regarding how to use `lush.nvim`, see
 [rktjmp/lush.nvim](https://github.com/rktjmp/lush.nvim).
+
+## Screenshots
+
+<img width="1774" alt="Screen Shot 2022-07-07 at 09 11 21" src="https://user-images.githubusercontent.com/11582667/177821293-734f1197-c4c0-4d97-910a-a008e6908674.png">
+
