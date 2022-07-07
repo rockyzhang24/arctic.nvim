@@ -13,7 +13,7 @@ UI. I only adapted the plugins I was using, but presumably most plugins with
 their default highlight settings should look harmonious. If you need a specific
 support, please open an issue.
 
-# Installation
+## Installation
 
 Using `vim-plug`
 
@@ -28,7 +28,7 @@ Using `packer`
 use {"rockyzhang24/arctic.nvim", requires = {"rktjmp/lush.nvim"}}
 ```
 
-# Usage
+## Usage
 
 Simply set the colorscheme with the builtin command `:colorscheme`
 
@@ -42,10 +42,10 @@ colorscheme arctic
 vim.cmd("colorscheme arctic")
 ```
 
-# Customization
+## Customization
 
 This theme was built with `rktjmp/lush.nvim`, so the customization and is quite
-easy. Just open `arctic.nvim/lua/lush_theme/arctic.lua` and execute `Lushify`.
+easy. Just open `arctic.nvim/lua/lush_theme/arctic.lua` and execute `:Lushify`.
 Then you can adjust colors or relink highlight groups to suit your taste, and it
-gives you real time feedback. For details, see
+gives you real time feedback. For details regarding how to use `lush.nvim`, see
 [rktjmp/lush.nvim](https://github.com/rktjmp/lush.nvim).
