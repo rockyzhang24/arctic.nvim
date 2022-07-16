@@ -49,6 +49,7 @@ local theme = lush(function()
     GutterGitAdded { fg = '#487e02' },
     GutterGitDeleted { fg = '#f14c4c' },
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
+    ScrollbarSlider { bg = '#424242' },
 
     -- Editor
     ColorColumn { bg = black },
