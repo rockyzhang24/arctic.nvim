@@ -50,6 +50,9 @@ local theme = lush(function()
     GutterGitDeleted { fg = '#f14c4c' },
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
     ScrollbarSlider { bg = '#424242' },
+    PeekViewBorder { fg = '#3794ff' },
+    PeekViewNormal { bg = '#001f33' },
+    PeekViewCursorLine { bg = '#002640' },
 
     -- Editor
     ColorColumn { bg = black },
@@ -334,13 +337,13 @@ local theme = lush(function()
     illuminatedCurWord { SelectionHighlightBackground },
 
     -- Telescope
-    TelescopeBorder { fg = float_border_fg },
+    TelescopeBorder { fg = float_border_fg, bg = norm_bg },
     TelescopePromptBorder { TelescopeBorder },
     TelescopeResultsBorder { TelescopePromptBorder },
     TelescopePreviewBorder { TelescopePromptBorder },
     TelescopeSelection { PmenuSel },
     TelescopeMatching { CmpItemAbbrMatch },
-    TelescopeNormal { fg = float_normal_fg },
+    TelescopeNormal { fg = float_normal_fg, bg = norm_bg },
     TelescopePromptPrefix { TelescopeNormal },
 
     -- Harpoon
@@ -359,6 +362,10 @@ local theme = lush(function()
     IndentBlanklineContextSpaceChar { IndentBlanklineContextChar },
     IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
 
+    -- nvim-ufo
+    UFOPreviewBorder { PeekViewBorder },
+    UFOPreviewNormal { PeekViewNormal },
+    UFOPreviewCursorLine { PeekViewCursorLine },
   }
 end)
 ---@diagnostic enable
