@@ -333,8 +333,9 @@ local theme = lush(function()
     GitSignsChangeLn { DiffChange },
 
     -- vim-illuminate
-    illuminatedWord { SelectionHighlightBackground },
-    illuminatedCurWord { SelectionHighlightBackground },
+    IlluminatedWordText { SelectionHighlightBackground },
+    IlluminatedWordRead { SelectionHighlightBackground },
+    IlluminatedWordWrite { SelectionHighlightBackground },
 
     -- Telescope
     TelescopeBorder { fg = float_border_fg, bg = norm_bg },
