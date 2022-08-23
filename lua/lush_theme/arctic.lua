@@ -101,7 +101,7 @@ local theme = lush(function()
     SpellLocal { gui = 'undercurl', sp = info_blue },
     SpellRare  { gui = 'undercurl', sp = info_blue  },
     StatusLine { bg = black3 },
-    -- StatusLineNC { },
+    StatusLineNC { fg = gray, bg = black3 },
     TabLine { fg = '#8f8f8f', bg = black2 },
     TabLineFill { fg = 'NONE', bg = black3 },
     TabLineSel { fg = white, bg = norm_bg },
