@@ -56,4 +56,8 @@ gives you real time feedback. For details regarding how to use `lush.nvim`, see
 
 ## Screenshots
 
+**Coding**
 <img width="1774" alt="Screen Shot 2022-07-07 at 14 03 54" src="https://user-images.githubusercontent.com/11582667/177871081-7e1e84b5-0456-491e-b3fc-2938eb4a1181.png">
+
+**Fold preview (nvim-ufo)**
+<img width="1864" alt="image" src="https://user-images.githubusercontent.com/11582667/186334727-5cda9c44-9a00-456d-bbef-f488001f8f26.png">
