@@ -53,6 +53,13 @@ local theme = lush(function()
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = '#001f33' },
     PeekViewCursorLine { bg = '#002640' },
+    -- Git diff
+    DiffTextAdded { bg = '#386229' },
+    DiffTextDeleted { bg = '#781212' },
+    DiffTextChanged { bg = '#0000ff' },
+    DiffLineAdded { bg = '#373d29' },
+    DiffLineDeleted { bg = '#4b1818' },
+    DiffLineChanged { bg = '#0e2f44' },
 
     -- Editor
     ColorColumn { bg = black },
@@ -63,10 +70,10 @@ local theme = lush(function()
     CursorLine { bg = black },
     CursorColumn { CursorLine },
     Directory { fg = blue },
-    DiffAdd { bg = '#373d29' },
-    DiffChange { bg = '#333841' },
-    DiffDelete { bg = '#4b1818' },
-    DiffText { bg = '#213352' },
+    DiffAdd { DiffLineAdded },
+    DiffDelete { DiffLineDeleted },
+    DiffChange { DiffLineChanged },
+    DiffText { DiffTextChanged },
     EndOfBuffer { fg = norm_bg },
     -- TermCursor { },
     -- TermCursorNC { },
@@ -331,6 +338,10 @@ local theme = lush(function()
     GitSignsDeleteNr { GitSignsDelete },
     GitSignsAddLn { DiffAdd },
     GitSignsChangeLn { DiffChange },
+    GitSignsDeleteLn { DiffDelete },
+    GitSignsAddInline { DiffTextAdded },
+    GitSignsChangeInline { DiffTextChanged },
+    GitSignsDeleteInline { DiffTextDeleted },
 
     -- vim-illuminate
     IlluminatedWordText { SelectionHighlightBackground },
