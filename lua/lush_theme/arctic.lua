@@ -6,6 +6,7 @@ local norm_fg = '#D4D4D4'
 local norm_bg = '#1E1E1E'
 
 local blue = '#569CD6'
+local blue2 = '#4fc1ff'
 local light_blue = '#9CDCFE'
 local bright_blue = '#18a3ff'
 local green = '#6A9955'
@@ -36,6 +37,7 @@ local float_border_fg = '#454545'
 local float_normal_fg = '#cccccc'
 local indent_guide_fg = '#404040'
 local indent_guide_context_fg = '#707070'
+local label_fg = '#c8c8c8'
 
 ---@diagnostic disable
 local theme = lush(function(injected_functions)
@@ -198,6 +200,20 @@ local theme = lush(function(injected_functions)
     DiagnosticSignInfo { DiagnosticInfo },
     DiagnosticSignHint { DiagnosticHint },
 
+    -- LSP semantic tokens
+    -- To find the highlight groups: see https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c#L267
+    sym("@class") { fg = blue_green },
+    sym("@struct") { fg = blue_green },
+    sym("@enum") { fg = blue_green },
+    sym("@enumMember") { fg = blue2 },
+    -- sym("@event") { },
+    sym("@interface") { fg = blue_green },
+    -- sym("@modifier") { },
+    sym("@regexp") { fg = light_red },
+    sym("@typeParameter") { fg = blue_green },
+    -- sym("@decorator") { },
+    sym("@macro") { fg = blue },
+
     -- Treesitter
     -- The obsolete TS* highlight groups are removed since this commit
     -- https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f
@@ -211,9 +227,10 @@ local theme = lush(function(injected_functions)
     -- sym("@character.special") { },
     -- sym("@comment") { },
     -- sym("@conditional") { },
+    -- sym("@conditional.ternary") { },
     -- sym("@constant") { },
     sym("@constant.builtin") { Constant },
-    sym("@constant.macro") { fg = blue_green },
+    sym("@constant.macro") { Constant },
     sym("@constructor") { fg = blue_green },
     -- sym("@debug") { },
     -- sym("@define") { },
@@ -223,14 +240,16 @@ local theme = lush(function(injected_functions)
     -- sym("@float") { },
     -- sym("@function") { },
     sym("@function.builtin") { Function },
+    sym("@function.call") { Function },
     sym("@function.macro") { Function },
     -- sym("@include") { },
     sym("@keyword") { Keyword },
     sym("@keyword.function") { fg = blue },
-    sym("@keyword.operator") { fg = blue },
+    sym("@keyword.operator") { fg = norm_fg },
     sym("@keyword.return") { fg = pink },
-    sym("@label") { fg = '#C8C8C8' },
+    sym("@label") { fg = label_fg },
     -- sym("@method") { },
+    -- sym("@method.call") { },
     sym("@namespace") { fg = blue_green },
     -- sym("@none") { },
     -- sym("@number") { },
@@ -267,10 +286,32 @@ local theme = lush(function(injected_functions)
     sym("@text.note") { fg = info_blue },
     sym("@text.warning") { fg = warn_yellow },
     sym("@text.danger") { fg = error_red },
-    sym("@type") { fg = blue_green },
-    sym("@type.builtin") { fg = blue_green },
-    sym("@variable") { fg = norm_fg },
+    sym("@text.diff.add") { DiffTextAdded },
+    sym("@text.diff.delete") { DiffTextDeleted },
+    -- sym("@type") { },
+    -- sym("@type.builtin") { },
+    -- sym("@type.definition") { },
+    -- sym("@type.qualifier") { },
+    sym("@variable") { fg = light_blue },
     sym("@variable.builtin") { fg = blue },
+    -- sym("@conceal") { },
+    -- sym("@spell") { },
+    -- sym("@nospell") { },
+    -- sym("@definition") { },
+    -- sym("@definition.constant") { },
+    -- sym("@definition.function") { },
+    -- sym("@definition.method") { },
+    -- sym("@definition.var") { },
+    -- sym("@definition.parameter") { },
+    -- sym("@definition.macro") { },
+    -- sym("@definition.type") { },
+    -- sym("@definition.field") { },
+    -- sym("@definition.enum") { },
+    -- sym("@definition.namespace") { },
+    -- sym("@definition.import") { },
+    -- sym("@definition.associated") { },
+    -- sym("@scope") { },
+    -- sym("@reference") { },
 
     -- nvim-cmp
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
