@@ -12,7 +12,6 @@ local bright_blue = '#18a3ff'
 local green = '#6A9955'
 local blue_green = '#4EC9B0'
 local light_green = '#B5CEA8'
-local red = '#F44747'
 local light_red = '#D16969'
 local orange = '#CE9178'
 local yellow_orange = '#D7BA7D'
@@ -21,11 +20,11 @@ local pink = '#C586C0'
 
 local white = '#ffffff'
 local gray = '#51504f'
-local gray2 = '#858585' -- fg for Conceal, LineNr, NonText
-local gray3 = '#808080' -- fg for TSTagDelimiter like `<` `>` `/`
-local black = '#222222' -- bg for CursorLine, ColorColumn
-local black2 = '#2d2d2d' -- bg for TabLine, DiagnosticVirtualTextHint
-local black3 = '#252526' -- bg for Pmenu, PmenuSbar, TabLineFill, Statusline
+local gray2 = '#858585'
+local gray3 = '#808080'
+local black = '#222222'
+local black2 = '#2d2d2d'
+local black3 = '#252526' -- Statusline, Tabline, Pmenu
 
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
@@ -33,8 +32,8 @@ local info_blue = '#3794ff'
 local hint_gray = '#B0B0B0'
 
 local selection_blue = '#094771'
+local folded_blue = '#202d39'
 local float_border_fg = '#454545'
-local float_normal_fg = '#cccccc'
 local indent_guide_fg = '#404040'
 local indent_guide_context_fg = '#707070'
 local label_fg = '#c8c8c8'
@@ -84,8 +83,8 @@ local theme = lush(function(injected_functions)
     VertSplit { fg = '#444444' },
     LineNr { fg = gray2 },
     CursorLineNr { fg = '#c6c6c6' },
-    Folded { bg = '#202d39' },
-    FoldColumn { LineNr }, -- vscode uses #c5c5c5, which is too bright
+    Folded { bg = folded_blue },
+    FoldColumn { LineNr }, -- vscode uses #c5c5c5 that is too bright and eye-catching
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
     -- Substitute { },
@@ -292,7 +291,7 @@ local theme = lush(function(injected_functions)
     -- sym("@type.builtin") { },
     -- sym("@type.definition") { },
     -- sym("@type.qualifier") { },
-    sym("@variable") { fg = light_blue },
+    sym("@variable") { fg = norm_fg },
     sym("@variable.builtin") { fg = blue },
     -- sym("@conceal") { },
     -- sym("@spell") { },
@@ -317,11 +316,7 @@ local theme = lush(function(injected_functions)
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
-
-    SuggestWidgetBorder { fg = float_border_fg },
-    SuggestWidgetSelect { bg = selection_blue },
-
-    CmpItemKindText { fg = float_normal_fg, bg = 'NONE' },
+    CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
     CmpItemKindMethod { fg = '#b180d7', bg = 'NONE' },
     CmpItemKindFunction { CmpItemKindMethod },
     CmpItemKindConstructor { CmpItemKindFunction },
@@ -346,6 +341,9 @@ local theme = lush(function(injected_functions)
     CmpItemKindEvent { CmpItemKindClass },
     CmpItemKindOperator { CmpItemKindText },
     CmpItemKindTypeParameter { CmpItemKindText },
+    -- Predefined for the winhighlight config of cmp float window
+    SuggestWidgetBorder { fg = float_border_fg },
+    SuggestWidgetSelect { bg = selection_blue },
 
     -- Aerial
     -- Same with the corresponding one in CmpItemKind above
@@ -401,7 +399,7 @@ local theme = lush(function(injected_functions)
     TelescopePreviewBorder { TelescopePromptBorder },
     TelescopeSelection { PmenuSel },
     TelescopeMatching { CmpItemAbbrMatch },
-    TelescopeNormal { fg = float_normal_fg, bg = norm_bg },
+    TelescopeNormal { Normal },
     TelescopePromptPrefix { TelescopeNormal },
 
     -- Harpoon
@@ -421,9 +419,13 @@ local theme = lush(function(injected_functions)
     IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
 
     -- nvim-ufo
-    UFOPreviewBorder { PeekViewBorder },
-    UFOPreviewNormal { PeekViewNormal },
-    UFOPreviewCursorLine { PeekViewCursorLine },
+    UfoPreviewBorder { PeekViewBorder },
+    UfoPreviewNormal { PeekViewNormal },
+    UfoPreviewCursorLine { PeekViewCursorLine },
+    UfoFoldedFg { fg = norm_fg },
+    UfoFoldedBg { bg = folded_blue },
+    UfoPreviewSbar { PeekViewNormal },
+    UfoPreviewThumb { bg = '#394a4b' },
   }
 end)
 ---@diagnostic enable
