@@ -84,6 +84,7 @@ local theme = lush(function(injected_functions)
     LineNr { fg = gray2 },
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = folded_blue },
+    CursorLineFold { CursorLineNr },
     FoldColumn { LineNr }, -- vscode uses #c5c5c5 that is too bright and eye-catching
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
