@@ -8,7 +8,7 @@ local norm_bg = '#1E1E1E'
 local blue = '#569CD6'
 local blue2 = '#4fc1ff'
 local light_blue = '#9CDCFE'
-local bright_blue = '#18a3ff'
+local bright_blue = '#2aaaff'
 local green = '#6A9955'
 local blue_green = '#4EC9B0'
 local light_green = '#B5CEA8'
@@ -22,7 +22,7 @@ local white = '#ffffff'
 local gray = '#51504f'
 local gray2 = '#858585'
 local gray3 = '#808080'
-local black = '#222222'
+local black = '#282828'
 local black2 = '#2d2d2d'
 local black3 = '#252526' -- Statusline, Tabline, Pmenu
 
@@ -31,7 +31,7 @@ local warn_yellow = '#CCA700'
 local info_blue = '#3794ff'
 local hint_gray = '#B0B0B0'
 
-local selection_blue = '#094771'
+local selection_blue = '#04395e'
 local folded_blue = '#202d39'
 local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
@@ -55,6 +55,7 @@ local theme = lush(function(injected_functions)
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = '#001f33' },
     PeekViewCursorLine { bg = '#002640' },
+    GhostText { fg = '#6b6b6b' },
     -- Git diff
     DiffTextAdded { bg = '#386229' },
     DiffTextDeleted { bg = '#781212' },
@@ -64,7 +65,7 @@ local theme = lush(function(injected_functions)
     DiffLineChanged { bg = '#0e2f44' },
 
     -- Editor
-    ColorColumn { bg = black },
+    ColorColumn { bg = black }, -- vscode uses #5a5a5a (editorRuler.foreground)
     Conceal { fg = gray2 },
     Cursor { fg = gray, bg = '#aeafad' },
     -- lCursor { },
@@ -85,7 +86,7 @@ local theme = lush(function(injected_functions)
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = folded_blue },
     CursorLineFold { CursorLineNr },
-    FoldColumn { LineNr }, -- vscode uses #c5c5c5 that is too bright and eye-catching
+    FoldColumn { LineNr }, -- vscode uses #c5c5c5 (editorGutter.foldingControlForeground)
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
     -- Substitute { },
@@ -317,6 +318,7 @@ local theme = lush(function(injected_functions)
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
+    CmpItemMenu { fg = '#989898' }, -- descriptionForeground
     CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
     CmpItemKindMethod { fg = '#b180d7', bg = 'NONE' },
     CmpItemKindFunction { CmpItemKindMethod },
