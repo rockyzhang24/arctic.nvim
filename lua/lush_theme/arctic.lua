@@ -43,7 +43,9 @@ local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
 
+    --
     -- Preset
+    --
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
@@ -64,7 +66,9 @@ local theme = lush(function(injected_functions)
     DiffLineDeleted { bg = '#4b1818' },
     DiffLineChanged { bg = '#0e2f44' },
 
+    --
     -- Editor
+    --
     ColorColumn { bg = black }, -- vscode uses #5a5a5a (editorRuler.foreground)
     Conceal { fg = gray2 },
     Cursor { fg = gray, bg = '#aeafad' },
@@ -127,7 +131,9 @@ local theme = lush(function(injected_functions)
     WinbarNC { Breadcrumb },
     FloatBorder { fg = float_border_fg },
 
+    --
     -- Symtax
+    --
     Comment { fg = green, gui = 'italic' },
 
     Constant { fg = blue },
@@ -167,11 +173,13 @@ local theme = lush(function(injected_functions)
     Debug { Special },
 
     Underlined { gui = "underline" },
-    -- Ignore { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+    -- Ignore { },
     Error { fg = error_red },
     Todo { fg = norm_bg, bg = yellow_orange, gui = 'bold' },
 
+    --
     -- LSP
+    --
     LspReferenceText { SelectionHighlightBackground },
     LspReferenceRead { SelectionHighlightBackground },
     LspReferenceWrite { SelectionHighlightBackground },
@@ -179,7 +187,9 @@ local theme = lush(function(injected_functions)
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
     LspSignatureActiveParameter { fg = bright_blue },
 
+    --
     -- Diagnostics
+    --
     DiagnosticError { fg = error_red },
     DiagnosticWarn { fg = warn_yellow },
     DiagnosticInfo { fg = info_blue },
@@ -201,7 +211,9 @@ local theme = lush(function(injected_functions)
     DiagnosticSignInfo { DiagnosticInfo },
     DiagnosticSignHint { DiagnosticHint },
 
+    --
     -- LSP semantic tokens
+    --
     -- To find the highlight groups: see https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c#L267
     sym("@class") { fg = blue_green },
     sym("@struct") { fg = blue_green },
@@ -215,62 +227,82 @@ local theme = lush(function(injected_functions)
     -- sym("@decorator") { },
     sym("@macro") { fg = blue },
 
+    --
     -- Treesitter
+    --
     -- The obsolete TS* highlight groups are removed since this commit
     -- https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f
     -- Now use the capture names directly as the highlight groups.
     -- (1). How to define the highlight group, see https://github.com/rktjmp/lush.nvim/issues/109
     -- (2). To find all the capture names, see https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md#highlights)
 
-    sym("@attribute") { fg = blue_green },
-    -- sym("@boolean") { },
-    -- sym("@character") { },
-    -- sym("@character.special") { },
+    -- Misc
     -- sym("@comment") { },
-    -- sym("@conditional") { },
-    -- sym("@conditional.ternary") { },
-    -- sym("@constant") { },
-    sym("@constant.builtin") { Constant },
-    sym("@constant.macro") { Constant },
-    sym("@constructor") { fg = blue_green },
-    -- sym("@debug") { },
-    -- sym("@define") { },
     sym("@error") { fg = error_red },
-    -- sym("@exception") { },
-    sym("@field") { fg = light_blue },
-    -- sym("@float") { },
-    -- sym("@function") { },
-    sym("@function.builtin") { Function },
-    sym("@function.call") { Function },
-    sym("@function.macro") { Function },
-    -- sym("@include") { },
-    sym("@keyword") { Keyword },
-    sym("@keyword.function") { fg = blue },
-    sym("@keyword.operator") { fg = norm_fg },
-    sym("@keyword.return") { fg = pink },
-    sym("@label") { fg = label_fg },
-    -- sym("@method") { },
-    -- sym("@method.call") { },
-    sym("@namespace") { fg = blue_green },
     -- sym("@none") { },
-    -- sym("@number") { },
-    sym("@operator") { fg = norm_fg },
-    sym("@parameter") { fg = light_blue },
     -- sym("@preproc") { },
-    sym("@property") { sym("@field") },
+    -- sym("@define") { },
+    sym("@operator") { fg = norm_fg },
+
+    -- Punctuation
     sym("@punctuation.delimiter") { fg = norm_fg },
     sym("@punctuation.bracket") { fg = norm_fg },
     sym("@punctuation.special") { fg = norm_fg },
-    -- sym("@repeat") { },
-    -- sym("@storageclass") { },
+
+    -- Literals
     -- sym("@string") { },
     sym("@string.regex") { fg = light_red },
     sym("@string.escape") { fg = yellow_orange },
     -- sym("@string.special") { },
+    -- sym("@character") { },
+    -- sym("@character.special") { },
+    -- sym("@boolean") { },
+    -- sym("@number") { },
+    -- sym("@float") { },
+
+    -- Function
+    -- sym("@function") { },
+    sym("@function.builtin") { Function },
+    sym("@function.call") { Function },
+    sym("@function.macro") { Function },
+    -- sym("@method") { },
+    -- sym("@method.call") { },
+    sym("@constructor") { fg = blue_green },
+    sym("@parameter") { fg = light_blue },
+
+    -- Keyword
+    sym("@keyword") { Keyword },
+    sym("@keyword.function") { fg = blue },
+    sym("@keyword.operator") { fg = norm_fg },
+    sym("@keyword.return") { fg = pink },
+    -- sym("@conditional") { },
+    -- sym("@conditional.ternary") { },
+    -- sym("@repeat") { },
+    -- sym("@debug") { },
+    sym("@label") { fg = label_fg },
+    -- sym("@include") { },
+    -- sym("@exception") { },
+
+    -- Types
+    sym("@type") { fg = blue_green },
+    sym("@type.builtin") { fg = blue },
+    sym("@type.definition") { fg = blue_green },
+    sym("@type.qualifier") { fg = blue },
+    sym("@storageclass") { fg = blue },
+    sym("@attribute") { fg = blue_green },
+    sym("@field") { fg = light_blue },
+    sym("@property") { sym("@field") },
+
+    -- Identifiers
+    sym("@variable") { fg = light_blue },
+    sym("@variable.builtin") { fg = blue },
+    -- sym("@constant") { },
+    sym("@constant.builtin") { Constant },
+    sym("@constant.macro") { Constant },
+    sym("@namespace") { fg = blue_green },
     -- sym("@symbol") { },
-    sym("@tag") { fg = blue },
-    -- sym("@tag.attribute") { },
-    sym("@tag.delimiter") { fg = gray3 },
+
+    -- Text (Mainly for markup languages)
     sym("@text") { fg = norm_fg },
     sym("@text.strong") { fg = norm_fg, gui = 'bold' },
     sym("@text.emphasis") { fg = norm_fg, gui = 'italic' },
@@ -278,43 +310,34 @@ local theme = lush(function(injected_functions)
     sym("@text.strike") { fg = norm_fg, gui = 'strikethrough' },
     sym("@text.title") { Title, gui = 'bold' },
     -- sym("@text.literal") { },
+    -- sym("@text.quote") { },
     sym("@text.uri") { Tag },
     sym("@text.math") { fg = blue_green },
-    sym("@text.reference") { fg = orange },
     -- sym("@text.environment") { },
     -- sym("@text.environment.name") { },
+    sym("@text.reference") { fg = orange },
     -- sym("@text.todo") { },
     sym("@text.note") { fg = info_blue },
     sym("@text.warning") { fg = warn_yellow },
     sym("@text.danger") { fg = error_red },
     sym("@text.diff.add") { DiffTextAdded },
     sym("@text.diff.delete") { DiffTextDeleted },
-    -- sym("@type") { },
-    -- sym("@type.builtin") { },
-    -- sym("@type.definition") { },
-    -- sym("@type.qualifier") { },
-    sym("@variable") { fg = norm_fg },
-    sym("@variable.builtin") { fg = blue },
+
+    -- Tags
+    sym("@tag") { fg = blue },
+    -- sym("@tag.attribute") { },
+    sym("@tag.delimiter") { fg = gray3 },
+
+    -- Conceal
     -- sym("@conceal") { },
+
+    -- Spell
     -- sym("@spell") { },
     -- sym("@nospell") { },
-    -- sym("@definition") { },
-    -- sym("@definition.constant") { },
-    -- sym("@definition.function") { },
-    -- sym("@definition.method") { },
-    -- sym("@definition.var") { },
-    -- sym("@definition.parameter") { },
-    -- sym("@definition.macro") { },
-    -- sym("@definition.type") { },
-    -- sym("@definition.field") { },
-    -- sym("@definition.enum") { },
-    -- sym("@definition.namespace") { },
-    -- sym("@definition.import") { },
-    -- sym("@definition.associated") { },
-    -- sym("@scope") { },
-    -- sym("@reference") { },
 
+    --
     -- nvim-cmp
+    --
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
@@ -348,8 +371,9 @@ local theme = lush(function(injected_functions)
     SuggestWidgetBorder { fg = float_border_fg },
     SuggestWidgetSelect { bg = selection_blue },
 
+    --
     -- Aerial
-    -- Same with the corresponding one in CmpItemKind above
+    --
     AerialTextIcon { CmpItemKindText },
     AerialMethodIcon { CmpItemKindMethod },
     AerialFunctionIcon { CmpItemKindFunction },
@@ -376,7 +400,9 @@ local theme = lush(function(injected_functions)
     AerialOperatorIcon { CmpItemKindOperator },
     AerialTypeParameterIcon { CmpItemKindTypeParameter },
 
+    --
     -- Gitsigns
+    --
     GitSignsAdd { GutterGitAdded },
     GitSignsChange { GutterGitModified },
     GitSignsDelete { GutterGitDeleted },
@@ -390,12 +416,16 @@ local theme = lush(function(injected_functions)
     GitSignsChangeInline { DiffTextChanged },
     GitSignsDeleteInline { DiffTextDeleted },
 
+    --
     -- vim-illuminate
+    --
     IlluminatedWordText { SelectionHighlightBackground },
     IlluminatedWordRead { SelectionHighlightBackground },
     IlluminatedWordWrite { SelectionHighlightBackground },
 
+    --
     -- Telescope
+    --
     TelescopeBorder { fg = float_border_fg, bg = norm_bg },
     TelescopePromptBorder { TelescopeBorder },
     TelescopeResultsBorder { TelescopePromptBorder },
@@ -405,15 +435,21 @@ local theme = lush(function(injected_functions)
     TelescopeNormal { Normal },
     TelescopePromptPrefix { TelescopeNormal },
 
+    --
     -- Harpoon
+    --
     HarpoonBorder { TelescopeBorder },
     HarpoonWindow { TelescopeNormal },
 
+    --
     -- fFHighlight
+    --
     fFHintWords { gui = 'underline', sp = 'yellow' },
     fFHintCurrentWord { gui = 'undercurl', sp = 'yellow' },
 
+    --
     -- indent-blankline
+    --
     IndentBlanklineChar { fg = indent_guide_fg },
     IndentBlanklineSpaceChar { IndentBlanklineChar },
     IndentBlanklineSpaceCharBlankline { IndentBlanklineChar },
@@ -421,7 +457,9 @@ local theme = lush(function(injected_functions)
     IndentBlanklineContextSpaceChar { IndentBlanklineContextChar },
     IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
 
+    --
     -- nvim-ufo
+    --
     UfoPreviewBorder { PeekViewBorder },
     UfoPreviewNormal { PeekViewNormal },
     UfoPreviewCursorLine { PeekViewCursorLine },
