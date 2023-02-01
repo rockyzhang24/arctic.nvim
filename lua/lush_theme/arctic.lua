@@ -1,4 +1,5 @@
 -- Template: https://github.com/rktjmp/lush-template/blob/main/lua/lush_theme/lush_template.lua
+-- VSCode Theme Color Reference: https://code.visualstudio.com/api/references/theme-color#command-center-colors
 
 local lush = require('lush')
 
@@ -22,9 +23,8 @@ local white = '#ffffff'
 local gray = '#51504f'
 local gray2 = '#858585'
 local gray3 = '#808080'
-local black = '#282828'
-local black2 = '#2d2d2d'
-local black3 = '#252526' -- Statusline, Tabline, Pmenu
+local black = '#2d2d2d' -- TabLine
+local black2 = '#252526' -- Statusline, TabLineFill, Pmenu
 
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
@@ -32,7 +32,7 @@ local info_blue = '#3794ff'
 local hint_gray = '#B0B0B0'
 
 local selection_blue = '#04395e'
-local folded_blue = '#202d39'
+local folded_blue = '#202d39' -- editor.foldBackground
 local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
 local indent_guide_context_fg = '#707070'
@@ -46,6 +46,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
+    FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
@@ -56,8 +57,12 @@ local theme = lush(function(injected_functions)
     ScrollbarSlider { bg = '#424242' },
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = '#001f33' },
-    PeekViewCursorLine { bg = '#002640' },
+    PeekViewCursorLine { bg = '#002f4e' },
+    PeekViewMatchHighlight { bg ='#996214' }, -- peekViewEditor.matchHighlightBackground
     GhostText { fg = '#6b6b6b' },
+    Icon { fg = '#c5c5c5' },
+    Description { fg = '#989898' }, -- descriptionForeground
+    ProgressBar { fg = '#0e70c0' }, -- progressBar.background
     -- Git diff
     DiffTextAdded { bg = '#386229' },
     DiffTextDeleted { bg = '#781212' },
@@ -65,17 +70,22 @@ local theme = lush(function(injected_functions)
     DiffLineAdded { bg = '#373d29' },
     DiffLineDeleted { bg = '#4b1818' },
     DiffLineChanged { bg = '#0e2f44' },
+    -- Quickfix list (can be used to define qf syntax, e.g.,
+    -- ~/.config/nvim/syntax/qf.vim)
+    QfFileName { fg = white },
+    QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
+    QfText { fg = '#bbbbbb' }, -- normal text in quickfix list
 
     --
     -- Editor
     --
-    ColorColumn { bg = black }, -- vscode uses #5a5a5a (editorRuler.foreground)
+    CursorLine { bg = '#2a2d2e' }, -- list.hoverBackground
+    CursorColumn { CursorLine },
+    ColorColumn { CursorLine }, -- vscode uses #5a5a5a (editorRuler.foreground)
     Conceal { fg = gray2 },
     Cursor { fg = gray, bg = '#aeafad' },
     -- lCursor { },
     -- CursorIM { },
-    CursorLine { bg = black },
-    CursorColumn { CursorLine },
     Directory { fg = blue },
     DiffAdd { DiffLineAdded },
     DiffDelete { DiffLineDeleted },
@@ -90,7 +100,7 @@ local theme = lush(function(injected_functions)
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = folded_blue },
     CursorLineFold { CursorLineNr },
-    FoldColumn { LineNr }, -- vscode uses #c5c5c5 (editorGutter.foldingControlForeground)
+    FoldColumn { LineNr }, -- vscode uses #c5c5c5 (editorGutter.foldingControlForeground) that is too bright
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
     -- Substitute { },
@@ -103,22 +113,22 @@ local theme = lush(function(injected_functions)
     Normal { fg = norm_fg, bg = norm_bg },
     -- NormalFloat { },
     -- NormalNC { },
-    Pmenu { fg = norm_fg, bg = black3 },
+    Pmenu { fg = norm_fg, bg = black2 },
     PmenuSel { fg = white, bg = selection_blue },
-    PmenuSbar { bg = black3 },
+    PmenuSbar { bg = black2 },
     PmenuThumb { bg = '#474747' },
     Question { fg = blue },
-    QuickFixLine { bg = '#37373d', gui = 'bold' },
+    QuickFixLine { QfSelection },
     Search { bg = '#613214' },
     SpecialKey { NonText },
     SpellBad { gui = 'undercurl', sp = error_red },
     SpellCap { gui = 'undercurl', sp = warn_yellow},
     SpellLocal { gui = 'undercurl', sp = info_blue },
     SpellRare  { gui = 'undercurl', sp = info_blue  },
-    StatusLine { bg = black3 },
-    StatusLineNC { fg = gray, bg = black3 },
-    TabLine { fg = '#8f8f8f', bg = black2 },
-    TabLineFill { fg = 'NONE', bg = black3 },
+    StatusLine { bg = black2 },
+    StatusLineNC { fg = gray, bg = black2 },
+    TabLine { fg = '#8f8f8f', bg = black },
+    TabLineFill { fg = 'NONE', bg = black2 },
     TabLineSel { fg = white, bg = norm_bg },
     Title { fg = blue, gui = 'bold' },
     Visual { bg = '#264F78' },
@@ -129,10 +139,9 @@ local theme = lush(function(injected_functions)
     WildMenu { PmenuSel },
     Winbar { Breadcrumb },
     WinbarNC { Breadcrumb },
-    FloatBorder { fg = float_border_fg },
 
     --
-    -- Symtax
+    -- Syntax
     --
     Comment { fg = green, gui = 'italic' },
 
@@ -197,7 +206,7 @@ local theme = lush(function(injected_functions)
     DiagnosticVirtualTextError { DiagnosticError, bg = '#332323' },
     DiagnosticVirtualTextWarn { DiagnosticWarn, bg = '#2f2c1b' },
     DiagnosticVirtualTextInfo { DiagnosticInfo, bg = '#212a35' },
-    DiagnosticVirtualTextHint { DiagnosticHint, bg = black2 },
+    DiagnosticVirtualTextHint { DiagnosticHint, bg = black },
     DiagnosticUnderlineError { gui = 'undercurl', sp = error_red },
     DiagnosticUnderlineWarn { gui = 'undercurl', sp = warn_yellow },
     DiagnosticUnderlineInfo { gui = 'undercurl', sp = info_blue },
@@ -214,18 +223,18 @@ local theme = lush(function(injected_functions)
     --
     -- LSP semantic tokens
     --
-    -- To find the highlight groups: see https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c#L267
+    -- https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c#L267
+    -- https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
     sym("@class") { fg = blue_green },
-    sym("@struct") { fg = blue_green },
     sym("@enum") { fg = blue_green },
-    sym("@enumMember") { fg = blue2 },
-    -- sym("@event") { },
     sym("@interface") { fg = blue_green },
-    -- sym("@modifier") { },
-    sym("@regexp") { fg = light_red },
+    sym("@struct") { fg = blue_green },
     sym("@typeParameter") { fg = blue_green },
+    sym("@enumMember") { fg = blue2 },
     -- sym("@decorator") { },
+    -- sym("@event") { },
     sym("@macro") { fg = blue },
+    sym("@regexp") { fg = light_red },
 
     --
     -- Treesitter
@@ -336,12 +345,21 @@ local theme = lush(function(injected_functions)
     -- sym("@nospell") { },
 
     --
+    -- nvim-lspconfig
+    --
+    -- LspInfoTitle { },
+    -- LspInfoList { },
+    -- LspInfoFiletype { },
+    -- LspInfoTip { },
+    LspInfoBorder { FloatBorder },
+
+    --
     -- nvim-cmp
     --
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
     CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
-    CmpItemMenu { fg = '#989898' }, -- descriptionForeground
+    CmpItemMenu { Description },
     CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
     CmpItemKindMethod { fg = '#b180d7', bg = 'NONE' },
     CmpItemKindFunction { CmpItemKindMethod },
@@ -368,7 +386,7 @@ local theme = lush(function(injected_functions)
     CmpItemKindOperator { CmpItemKindText },
     CmpItemKindTypeParameter { CmpItemKindText },
     -- Predefined for the winhighlight config of cmp float window
-    SuggestWidgetBorder { fg = float_border_fg },
+    SuggestWidgetBorder { FloatBorder },
     SuggestWidgetSelect { bg = selection_blue },
 
     --
@@ -426,14 +444,16 @@ local theme = lush(function(injected_functions)
     --
     -- Telescope
     --
-    TelescopeBorder { fg = float_border_fg, bg = norm_bg },
+    TelescopeBorder { FloatBorder },
     TelescopePromptBorder { TelescopeBorder },
     TelescopeResultsBorder { TelescopePromptBorder },
     TelescopePreviewBorder { TelescopePromptBorder },
     TelescopeSelection { PmenuSel },
+    TelescopeSelectionCaret { TelescopeSelection },
+    TelescopeMultiIcon { fg = blue_green },
     TelescopeMatching { CmpItemAbbrMatch },
     TelescopeNormal { Normal },
-    TelescopePromptPrefix { TelescopeNormal },
+    TelescopePromptPrefix { Icon },
 
     --
     -- Harpoon
@@ -458,6 +478,13 @@ local theme = lush(function(injected_functions)
     IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
 
     --
+    -- hlslens
+    --
+    HlSearchNear { IncSearch },
+    HlSearchLens { Description },
+    HlSearchLensNear { HlSearchLens },
+
+    --
     -- nvim-ufo
     --
     UfoPreviewBorder { PeekViewBorder },
@@ -465,8 +492,27 @@ local theme = lush(function(injected_functions)
     UfoPreviewCursorLine { PeekViewCursorLine },
     UfoFoldedFg { fg = norm_fg },
     UfoFoldedBg { bg = folded_blue },
+    UfoCursorFoldedLine { bg = folded_blue, gui = 'bold, italic' },
     UfoPreviewSbar { PeekViewNormal },
     UfoPreviewThumb { bg = '#394a4b' },
+    UfoFoldedEllipsis { fg = '#989ca0' },
+
+    --
+    -- nvim-bqf
+    --
+    BqfPreviewFloat { PeekViewNormal },
+    BqfPreviewBorder { PeekViewBorder },
+    BqfPreviewCursor { Cursor },
+    BqfPreviewCursorLine { PeekViewCursorLine },
+    BqfPreviewRange { PeekViewMatchHighlight },
+    BqfPreviewBufLabel { fg = '#8f989e' }, -- descriptionForeground with PeekViewNormal's bg as the background
+    BqfSign { fg = blue_green },
+
+    --
+    -- Symbols-outline
+    --
+    FocusedSymbol { fg = white, bg = selection_blue },
+    SymbolsOutlineConnector { fg = '#585858' },
   }
 end)
 ---@diagnostic enable
