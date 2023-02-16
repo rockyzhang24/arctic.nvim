@@ -95,7 +95,8 @@ local theme = lush(function(injected_functions)
     -- TermCursor { },
     -- TermCursorNC { },
     ErrorMsg { fg = error_red },
-    VertSplit { fg = '#444444' },
+    WinSeparator { fg = '#444444' }, -- editorGroup.border
+    VirtSplit { WinSeparator }, -- deprecated and use WinSeparator instead
     LineNr { fg = gray2 },
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = folded_blue },
@@ -135,7 +136,6 @@ local theme = lush(function(injected_functions)
     -- VisualNOS { },
     WarningMsg { fg = warn_yellow },
     Whitespace { fg = '#3e3e3d' },
-    -- Winseparator { },
     WildMenu { PmenuSel },
     Winbar { Breadcrumb },
     WinbarNC { Breadcrumb },
@@ -325,7 +325,7 @@ local theme = lush(function(injected_functions)
     -- sym("@text.environment") { },
     -- sym("@text.environment.name") { },
     sym("@text.reference") { fg = orange },
-    -- sym("@text.todo") { },
+    sym("@text.todo") { Todo },
     sym("@text.note") { fg = info_blue },
     sym("@text.warning") { fg = warn_yellow },
     sym("@text.danger") { fg = error_red },
