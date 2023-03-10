@@ -25,6 +25,7 @@ local gray2 = '#858585'
 local gray3 = '#808080'
 local black = '#2d2d2d' -- TabLine
 local black2 = '#252526' -- Statusline, TabLineFill, Pmenu
+local black3 = '#2a2d2e' -- CursorLine (list.hoverBackground from VSCode)
 
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
@@ -79,9 +80,9 @@ local theme = lush(function(injected_functions)
     --
     -- Editor
     --
-    CursorLine { bg = '#2a2d2e' }, -- list.hoverBackground
-    CursorColumn { CursorLine },
-    ColorColumn { CursorLine }, -- vscode uses #5a5a5a (editorRuler.foreground)
+    CursorLine { bg = black3 },
+    CursorColumn { bg = black3 },
+    ColorColumn { bg = black2 }, -- #5a5a5a in VSCode (editorRuler.foreground) it's too bright
     Conceal { fg = gray2 },
     Cursor { fg = gray, bg = '#aeafad' },
     -- lCursor { },
@@ -101,7 +102,7 @@ local theme = lush(function(injected_functions)
     CursorLineNr { fg = '#c6c6c6' },
     Folded { bg = folded_blue },
     CursorLineFold { CursorLineNr },
-    FoldColumn { LineNr }, -- vscode uses #c5c5c5 (editorGutter.foldingControlForeground) that is too bright
+    FoldColumn { LineNr }, -- #c5c5c5 in VSCode (editorGutter.foldingControlForeground) and it's too bright
     SignColumn { bg = norm_bg },
     IncSearch { bg = '#515c6a' },
     -- Substitute { },
@@ -221,22 +222,6 @@ local theme = lush(function(injected_functions)
     DiagnosticSignHint { DiagnosticHint },
 
     --
-    -- LSP semantic tokens
-    --
-    -- https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c#L267
-    -- https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
-    sym("@class") { fg = blue_green },
-    sym("@enum") { fg = blue_green },
-    sym("@interface") { fg = blue_green },
-    sym("@struct") { fg = blue_green },
-    sym("@typeParameter") { fg = blue_green },
-    sym("@enumMember") { fg = blue2 },
-    -- sym("@decorator") { },
-    -- sym("@event") { },
-    sym("@macro") { fg = blue },
-    sym("@regexp") { fg = light_red },
-
-    --
     -- Treesitter
     --
     -- The obsolete TS* highlight groups are removed since this commit
@@ -246,7 +231,8 @@ local theme = lush(function(injected_functions)
     -- (2). To find all the capture names, see https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md#highlights)
 
     -- Misc
-    -- sym("@comment") { },
+    sym("@comment") { Comment },
+    sym("@comment.documentation") { sym("@comment") },
     sym("@error") { fg = error_red },
     -- sym("@none") { },
     -- sym("@preproc") { },
@@ -260,6 +246,7 @@ local theme = lush(function(injected_functions)
 
     -- Literals
     -- sym("@string") { },
+    sym("@string.documentation") { fg = orange },
     sym("@string.regex") { fg = light_red },
     sym("@string.escape") { fg = yellow_orange },
     -- sym("@string.special") { },
@@ -344,6 +331,41 @@ local theme = lush(function(injected_functions)
     -- Spell
     -- sym("@spell") { },
     -- sym("@nospell") { },
+
+    --
+    -- LSP semantic tokens
+    --
+    -- The help page :h lsp-semantic-highlight
+    -- A short guide: https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
+    -- Token types and modifiers are described here: https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
+    sym("@lsp.type.namespace") { fg = blue_green },
+    sym("@lsp.type.type") { fg = blue_green },
+    sym("@lsp.type.class") { fg = blue_green },
+    sym("@lsp.type.enum") { fg = blue_green },
+    sym("@lsp.type.interface") { fg = blue_green },
+    sym("@lsp.type.struct") { fg = blue_green },
+    sym("@lsp.type.typeParameter") { fg = blue_green },
+    sym("@lsp.type.parameter") { fg = light_blue },
+    sym("@lsp.type.variable") { fg = light_blue },
+    sym("@lsp.type.property") { fg = light_blue },
+    sym("@lsp.type.enumMember") { fg = blue2 },
+    -- sym("@lsp.type.event") { },  -- TODO: what is event property?
+    sym("@lsp.type.function") { fg = yellow },
+    sym("@lsp.type.method") { fg = yellow },
+    sym("@lsp.type.macro") { fg = blue },
+    sym("@lsp.type.keyword") { fg = blue },
+    sym("@lsp.type.modifier") { fg = blue },
+    sym("@lsp.type.comment") { fg = green },
+    sym("@lsp.type.string") { fg = orange },
+    sym("@lsp.type.number") { fg = light_green },
+    sym("@lsp.type.regexp") { fg = light_red },
+    sym("@lsp.type.operator") { fg = norm_fg },
+    sym("@lsp.type.decorator") { fg = yellow },
+    sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
+    sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
+    sym("@lsp.typemod.function.defaultLibrary") { fg = yellow },
+    sym("@lsp.typemod.variable.readonly") { fg = blue2 },
+    sym("@lsp.typemod.property.readonly") { fg = blue2 },
 
     --
     -- nvim-lspconfig
@@ -493,7 +515,7 @@ local theme = lush(function(injected_functions)
     UfoPreviewCursorLine { PeekViewCursorLine },
     UfoFoldedFg { fg = norm_fg },
     UfoFoldedBg { bg = folded_blue },
-    UfoCursorFoldedLine { bg = folded_blue, gui = 'bold, italic' },
+    UfoCursorFoldedLine { bg = '#2F3C48', gui = 'bold, italic' },
     UfoPreviewSbar { PeekViewNormal },
     UfoPreviewThumb { bg = '#394a4b' },
     UfoFoldedEllipsis { fg = '#989ca0' },
