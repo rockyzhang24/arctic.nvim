@@ -47,6 +47,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
+    TabBorder { fg = black2 }, -- tab.border, border to separate tabs from each other
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
@@ -366,6 +367,12 @@ local theme = lush(function(injected_functions)
     sym("@lsp.typemod.function.defaultLibrary") { fg = yellow },
     sym("@lsp.typemod.variable.readonly") { fg = blue2 },
     sym("@lsp.typemod.property.readonly") { fg = blue2 },
+    -- Set injected highlights. Mainly for Rust doc comments and also works for
+    -- other lsps that inject tokens in comments.
+    -- Ref: https://github.com/folke/tokyonight.nvim/pull/340
+    sym("@lsp.typemod.operator.injected") { sym("@lsp.type.operator") },
+    sym("@lsp.typemod.string.injected") { sym("@lsp.type.string") },
+    sym("@lsp.typemod.variable.injected") { sym("@lsp.type.variable") },
 
     --
     -- nvim-lspconfig
@@ -536,6 +543,34 @@ local theme = lush(function(injected_functions)
     --
     FocusedSymbol { fg = white, bg = selection_blue },
     SymbolsOutlineConnector { fg = '#585858' },
+
+    --
+    -- mg979/tabline.nvim
+    --
+    TSelect { TabLineSel },
+    TVisible { TabLine },
+    THidden { TabLine },
+    TExtra { TabLine },
+    TSpecial { TabLine },
+    TFill { TabLineFill },
+    TCorner { fg = white, bg = black2 },
+    TNumSel { TSelect },
+    TNum { TabLine },
+    TSelectMod { TSelect },
+    TVisibleMod { TVisible },
+    THiddenMod { THidden },
+    TExtraMod { TExtra },
+    TSpecialMod { TSpecial },
+    TSelectDim { TSelect },
+    TVisibleDim { TVisible },
+    THiddenDim { THidden },
+    TExtraDim { TExtra },
+    TSpecialDim { TSpecial },
+    TSelectSep { TabBorder },
+    TVisibleSep { TabBorder },
+    THiddenSep { TabBorder },
+    TExtraSep { TabBorder },
+    TSpecialSep { TabBorder },
   }
 end)
 ---@diagnostic enable
