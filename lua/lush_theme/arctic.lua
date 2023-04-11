@@ -31,6 +31,7 @@ local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
 local info_blue = '#3794ff'
 local hint_gray = '#B0B0B0'
+local ok_green = '#89d185' -- color for success, so I use notebookStatusSuccessIcon.foreground
 
 local selection_blue = '#04395e'
 local folded_blue = '#202d39' -- editor.foldBackground
@@ -65,6 +66,11 @@ local theme = lush(function(injected_functions)
     Icon { fg = '#c5c5c5' },
     Description { fg = '#989898' }, -- descriptionForeground
     ProgressBar { fg = '#0e70c0' }, -- progressBar.background
+    Hint { fg = bright_blue }, -- for the hint letter in options, e.g., the q in [q]uickfix
+    -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
+    -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
+    -- so the color will be 9cdcfeaa. Converting hexa to hex gets 729db4.
+    UnnecessaryCode { fg = '#729db4' },
     -- Git diff
     DiffTextAdded { bg = '#386229' },
     DiffTextDeleted { bg = '#781212' },
@@ -205,22 +211,29 @@ local theme = lush(function(injected_functions)
     DiagnosticWarn { fg = warn_yellow },
     DiagnosticInfo { fg = info_blue },
     DiagnosticHint { fg = hint_gray },
+    DiagnosticOk { fg = ok_green },
     DiagnosticVirtualTextError { DiagnosticError, bg = '#332323' },
     DiagnosticVirtualTextWarn { DiagnosticWarn, bg = '#2f2c1b' },
     DiagnosticVirtualTextInfo { DiagnosticInfo, bg = '#212a35' },
     DiagnosticVirtualTextHint { DiagnosticHint, bg = black },
+    DiagnosticVirtualTextOk { DiagnosticOk, bg = '#233323' },
     DiagnosticUnderlineError { gui = 'undercurl', sp = error_red },
     DiagnosticUnderlineWarn { gui = 'undercurl', sp = warn_yellow },
     DiagnosticUnderlineInfo { gui = 'undercurl', sp = info_blue },
     DiagnosticUnderlineHint { gui = 'undercurl', sp = hint_gray },
+    DiagnosticUnderlineOk { gui = 'undercurl', sp = ok_green },
     DiagnosticFloatingError { DiagnosticError },
     DiagnosticFloatingWarn { DiagnosticWarn },
     DiagnosticFloatingInfo { DiagnosticInfo },
     DiagnosticFloatingHint { DiagnosticHint },
+    DiagnosticFloatingOk { DiagnosticOk },
     DiagnosticSignError { DiagnosticError },
     DiagnosticSignWarn { DiagnosticWarn },
     DiagnosticSignInfo { DiagnosticInfo },
     DiagnosticSignHint { DiagnosticHint },
+    DiagnosticSignOk { DiagnosticOk },
+    DiagnosticUnnecessary { UnnecessaryCode, gui = 'underdashed' },
+    DiagnosticDeprecated { fg = gray3, gui = 'strikethrough' },
 
     --
     -- Treesitter
