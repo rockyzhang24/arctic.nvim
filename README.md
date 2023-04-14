@@ -2,7 +2,7 @@
 
 # Arctic.nvim
 
-A Neovim theme ported from the VSCode Dark+ theme.
+A Neovim theme ported from the VSCode Dark+ theme
 
 </div>
 
@@ -16,6 +16,12 @@ defined as strictly and precisely as possible, including the editor itself and
 UI. I only adapted the plugins I was using, but presumably most plugins with
 their default highlight settings should look harmonious. If you need a specific
 support, please open an issue.
+
+## Version 2
+
+VSCode is rolling out the successor of Dark+ that is called **Dark+ V2**. Currently
+only the UI theme colors have been updated and it is still in the experimental
+stage. If you want to give it a shot, please checkout the `v2` branch.
 
 ## Installation
 
