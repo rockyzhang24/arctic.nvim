@@ -1,6 +1,6 @@
 -- Lualine theme
--- Put it under lualine.nvim/lua/lualine/themes/ and then set options.theme to
--- 'arctic'
+-- Put it under lualine.nvim/lua/lualine/themes/ and then set `options.theme =
+-- arctic` in your luaine's config.
 
 local colors = {
   pink = '#c586c0',
@@ -11,15 +11,15 @@ local colors = {
   violet = '#646695',
   purple = '#68217a',
   white = '#ffffff',
-  lightgray = '#454545',
-  gray = '#252526',
+  gray = '#3E3E3E', -- 15% lighter than black
+  black = '#181818',
 }
 
 return {
   normal = {
     a = { fg = colors.white, bg = colors.blue },
-    b = { fg = colors.white, bg = colors.lightgray },
-    c = { fg = colors.white, bg = colors.gray }
+    b = { fg = colors.white, bg = colors.gray },
+    c = { fg = colors.white, bg = colors.black }
   },
   insert = {
     a = { fg = colors.white, bg = colors.orange },
@@ -40,6 +40,6 @@ return {
     a = { fg = colors.white, bg = colors.red },
   },
   inactive = {
-    a = { fg = colors.white, bg = colors.darkgray },
+    a = { fg = colors.white, bg = colors.black },
   }
 }

@@ -3,8 +3,8 @@
 
 local lush = require('lush')
 
-local norm_fg = '#D4D4D4'
-local norm_bg = '#1E1E1E'
+local norm_fg = '#cccccc'
+local norm_bg = '#1f1f1f'
 
 local blue = '#569CD6'
 local blue2 = '#4fc1ff'
@@ -21,11 +21,13 @@ local pink = '#C586C0'
 
 local white = '#ffffff'
 local gray = '#51504f'
-local gray2 = '#858585'
+local gray2 = '#6e7681' -- LineNr (editorLineNumber.foreground)
 local gray3 = '#808080'
+local gray4 = '#8b949e'
 local black = '#2d2d2d' -- TabLine
-local black2 = '#252526' -- Statusline, TabLineFill, Pmenu
-local black3 = '#2a2d2e' -- CursorLine (list.hoverBackground from VSCode)
+local black2 = '#252526' -- Pmenu (editorSuggestWidget.background)
+local black3 = '#2a2d2e' -- CursorLine (list.hoverBackground)
+local black4 = '#181818' -- Statusline
 
 local error_red = '#F14C4C'
 local warn_yellow = '#CCA700'
@@ -53,36 +55,39 @@ local theme = lush(function(injected_functions)
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
-    GutterGitModified { fg = '#1b81a8' },
-    GutterGitAdded { fg = '#487e02' },
-    GutterGitDeleted { fg = '#f14c4c' },
+    GutterGitAdded { fg = '#2ea043' }, -- editorGutter.addedBackground
+    GutterGitDeleted { fg = '#f85149' }, -- editorGutter.deletedBackground
+    GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
-    ScrollbarSlider { bg = '#424242' },
+    ScrollbarSlider { bg = '#2f3033' }, -- the slider on the general scrollbar (scrollbarSlider.background based on norm_bg as its background)
     PeekViewBorder { fg = '#3794ff' },
-    PeekViewNormal { bg = '#001f33' },
-    PeekViewCursorLine { bg = '#002f4e' },
-    PeekViewMatchHighlight { bg ='#996214' }, -- peekViewEditor.matchHighlightBackground
+    PeekViewNormal { bg = norm_bg }, -- peekViewEditor.background
+    PeekViewCursorLine { bg = black3 },
+    PeekViewMatchHighlight { bg ='#5d4616' }, -- peekViewEditor.matchHighlightBackground
     GhostText { fg = '#6b6b6b' },
     Icon { fg = '#c5c5c5' },
-    Description { fg = '#989898' }, -- descriptionForeground
-    ProgressBar { fg = '#0e70c0' }, -- progressBar.background
+    Description { fg = gray4 }, -- descriptionForeground
+    ProgressBar { fg = '#0078d4' }, -- progressBar.background
     Hint { fg = bright_blue }, -- for the hint letter in options, e.g., the q in [q]uickfix
     -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
     -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
     -- so the color will be 9cdcfeaa. Converting hexa to hex gets 729db4.
     UnnecessaryCode { fg = '#729db4' },
     -- Git diff
-    DiffTextAdded { bg = '#386229' },
-    DiffTextDeleted { bg = '#781212' },
-    DiffTextChanged { bg = '#0000ff' },
-    DiffLineAdded { bg = '#373d29' },
-    DiffLineDeleted { bg = '#4b1818' },
+    DiffTextAdded { bg = '#214d29' }, -- diffEditor.insertedTextBackground (DiffLineAdded as its background)
+    DiffTextDeleted { bg = '#712928' }, -- diffEditor.removedTextBackground (DiffLineDeleted as its background)
+    DiffTextChanged { bg = '#0E2FDC' },
+    DiffLineAdded { bg = '#203424' }, -- diffEditor.insertedLineBackground
+    DiffLineDeleted { bg = '#442423' }, -- diffEditor.removedLineBackground
     DiffLineChanged { bg = '#0e2f44' },
     -- Quickfix list (can be used to define qf syntax, e.g.,
     -- ~/.config/nvim/syntax/qf.vim)
     QfFileName { fg = white },
     QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
     QfText { fg = '#bbbbbb' }, -- normal text in quickfix list
+    -- Inline hints
+    InlayHint { fg = gray4, bg = '#353638' }, -- editorInlayHint.foreground/background
+    InlayHintType { InlayHint }, -- editorInlayHint.typeBackground/typeForeground
 
     --
     -- Editor
@@ -103,15 +108,15 @@ local theme = lush(function(injected_functions)
     -- TermCursor { },
     -- TermCursorNC { },
     ErrorMsg { fg = error_red },
-    WinSeparator { fg = '#444444' }, -- editorGroup.border
+    WinSeparator { fg = '#333333' }, -- editorGroup.border
     VirtSplit { WinSeparator }, -- deprecated and use WinSeparator instead
-    LineNr { fg = gray2 },
-    CursorLineNr { fg = '#c6c6c6' },
+    LineNr { fg = gray2 }, -- editorLineNumber.foreground
+    CursorLineNr { fg = '#cccccc' }, -- editorLineNumber.activeForeground
     Folded { bg = folded_blue },
     CursorLineFold { CursorLineNr },
     FoldColumn { LineNr }, -- #c5c5c5 in VSCode (editorGutter.foldingControlForeground) and it's too bright
     SignColumn { bg = norm_bg },
-    IncSearch { bg = '#515c6a' },
+    IncSearch { bg = '#9e6a03' }, -- editor.findMatchBackground
     -- Substitute { },
     MatchParen { bg = gray, gui = 'bold, underline' },
     ModeMsg { fg = norm_fg },
@@ -122,10 +127,10 @@ local theme = lush(function(injected_functions)
     Normal { fg = norm_fg, bg = norm_bg },
     -- NormalFloat { },
     -- NormalNC { },
-    Pmenu { fg = norm_fg, bg = black2 },
+    Pmenu { fg = norm_fg, bg = black2 }, -- editorSuggestWidget.background/foreground
     PmenuSel { fg = white, bg = selection_blue },
     PmenuSbar { bg = black2 },
-    PmenuThumb { bg = '#474747' },
+    PmenuThumb { bg = '#343538' }, -- the slider on the scrollbar of Pmenu (scrollbarSlider.background based on PmenuSbar as its background)
     Question { fg = blue },
     QuickFixLine { QfSelection },
     Search { bg = '#613214' },
@@ -134,11 +139,11 @@ local theme = lush(function(injected_functions)
     SpellCap { gui = 'undercurl', sp = warn_yellow},
     SpellLocal { gui = 'undercurl', sp = info_blue },
     SpellRare  { gui = 'undercurl', sp = info_blue  },
-    StatusLine { bg = black2 },
-    StatusLineNC { fg = gray, bg = black2 },
-    TabLine { fg = '#8f8f8f', bg = black },
-    TabLineFill { fg = 'NONE', bg = black2 },
-    TabLineSel { fg = white, bg = norm_bg },
+    StatusLine { bg = black4 },
+    StatusLineNC { fg = gray, bg = black4 },
+    TabLine { fg = '#8c8c8c', bg = black4 }, -- tab.inactiveBackground, tab.inactiveForeground
+    TabLineFill { fg = 'NONE', bg = black4 }, -- editorGroupHeader.tabsBackground
+    TabLineSel { fg = white, bg = norm_bg }, -- tab.activeBackground, tab.activeForeground
     Title { fg = blue, gui = 'bold' },
     Visual { bg = '#264F78' },
     -- VisualNOS { },
@@ -548,7 +553,7 @@ local theme = lush(function(injected_functions)
     BqfPreviewCursor { Cursor },
     BqfPreviewCursorLine { PeekViewCursorLine },
     BqfPreviewRange { PeekViewMatchHighlight },
-    BqfPreviewBufLabel { fg = '#8f989e' }, -- descriptionForeground with PeekViewNormal's bg as the background
+    BqfPreviewBufLabel { fg = gray4 }, -- descriptionForeground
     BqfSign { fg = blue_green },
 
     --
@@ -566,7 +571,7 @@ local theme = lush(function(injected_functions)
     TExtra { TabLine },
     TSpecial { TabLine },
     TFill { TabLineFill },
-    TCorner { fg = white, bg = black2 },
+    TCorner { fg = white, bg = norm_bg },
     TNumSel { TSelect },
     TNum { TabLine },
     TSelectMod { TSelect },
