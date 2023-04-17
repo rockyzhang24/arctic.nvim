@@ -120,7 +120,7 @@ local theme = lush(function(injected_functions)
     -- Substitute { },
     MatchParen { bg = gray, gui = 'bold, underline' },
     ModeMsg { fg = norm_fg },
-    -- MsgArea { },
+    MsgArea { fg = norm_fg },
     -- MsgSeparator { },
     MoreMsg { fg = norm_fg },
     NonText { fg = gray2 },
@@ -261,7 +261,7 @@ local theme = lush(function(injected_functions)
     -- Punctuation
     sym("@punctuation.delimiter") { fg = norm_fg },
     sym("@punctuation.bracket") { fg = norm_fg },
-    sym("@punctuation.special") { fg = norm_fg },
+    sym("@punctuation.special") { fg = blue },
 
     -- Literals
     -- sym("@string") { },
@@ -325,7 +325,7 @@ local theme = lush(function(injected_functions)
     sym("@text.underline") { fg = norm_fg, gui = 'underline' },
     sym("@text.strike") { fg = norm_fg, gui = 'strikethrough' },
     sym("@text.title") { Title, gui = 'bold' },
-    -- sym("@text.literal") { },
+    sym("@text.literal") { fg = orange },
     -- sym("@text.quote") { },
     sym("@text.uri") { Tag },
     sym("@text.math") { fg = blue_green },
@@ -341,7 +341,7 @@ local theme = lush(function(injected_functions)
 
     -- Tags
     sym("@tag") { fg = blue },
-    -- sym("@tag.attribute") { },
+    sym("@tag.attribute") { fg = light_blue },
     sym("@tag.delimiter") { fg = gray3 },
 
     -- Conceal
