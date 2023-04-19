@@ -20,13 +20,13 @@ local yellow = '#DCDCAA'
 local pink = '#C586C0'
 
 local white = '#ffffff'
-local gray = '#51504f'
+local gray = '#51504f' -- StatuslineNC's fg
 local gray2 = '#6e7681' -- LineNr (editorLineNumber.foreground)
 local gray3 = '#808080'
 local gray4 = '#8b949e'
 local black = '#2d2d2d' -- TabLine
-local black2 = '#252526' -- Pmenu (editorSuggestWidget.background)
-local black3 = '#2a2d2e' -- CursorLine (list.hoverBackground)
+local black2 = '#252526'
+local black3 = '#282828' -- CursorLine (editor.lineHighlightBorder). Or use #2a2d2e (list.hoverBackground) for a brighter color
 local black4 = '#181818' -- Statusline
 
 local error_red = '#F14C4C'
@@ -36,7 +36,7 @@ local hint_gray = '#B0B0B0'
 local ok_green = '#89d185' -- color for success, so I use notebookStatusSuccessIcon.foreground
 
 local selection_blue = '#04395e'
-local folded_blue = '#202d39' -- editor.foldBackground
+local folded_blue = '#212d3a' -- editor.foldBackground
 local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
 local indent_guide_context_fg = '#707070'
@@ -50,25 +50,26 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
-    TabBorder { fg = black2 }, -- tab.border, border to separate tabs from each other
+    TabBorder { fg = '#2a2a2a' }, -- tab.border
     FloatBorder { fg = float_border_fg },
-    SelectionHighlightBackground { bg = '#333a40' },
-    LightBulb { fg = '#ffcc00' },
-    CodeLens { fg = '#999999' },
+    SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
+    LightBulb { fg = '#ffcc00' }, -- editorLightBulb.foreground
+    CodeLens { fg = '#999999' }, -- editorCodeLens.foreground
     GutterGitAdded { fg = '#2ea043' }, -- editorGutter.addedBackground
     GutterGitDeleted { fg = '#f85149' }, -- editorGutter.deletedBackground
     GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
-    Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
+    Breadcrumb { fg = '#a9a9a9', bg = norm_bg }, -- breadcrumb.foreground/background
     ScrollbarSlider { bg = '#2f3033' }, -- the slider on the general scrollbar (scrollbarSlider.background based on norm_bg as its background)
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = norm_bg }, -- peekViewEditor.background
     PeekViewCursorLine { bg = black3 },
     PeekViewMatchHighlight { bg ='#5d4616' }, -- peekViewEditor.matchHighlightBackground
-    GhostText { fg = '#6b6b6b' },
-    Icon { fg = '#c5c5c5' },
+    GhostText { fg = '#6b6b6b' }, -- editorGhostText.foreground
+    Icon { fg = '#cccccc' }, -- icon.foreground
     Description { fg = gray4 }, -- descriptionForeground
     ProgressBar { fg = '#0078d4' }, -- progressBar.background
-    Hint { fg = bright_blue }, -- for the hint letter in options, e.g., the q in [q]uickfix
+    MatchedCharacters { fg = bright_blue }, -- editorSuggestWidget.highlightForeground
+    Hint { MatchedCharacters }, -- for the hint letter in options, e.g., the q in [q]uickfix
     -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
     -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
     -- so the color will be 9cdcfeaa. Converting hexa to hex gets 729db4.
@@ -84,7 +85,7 @@ local theme = lush(function(injected_functions)
     -- ~/.config/nvim/syntax/qf.vim)
     QfFileName { fg = white },
     QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
-    QfText { fg = '#bbbbbb' }, -- normal text in quickfix list
+    QfText { fg = '#bbbbbb' }, -- normal text in quickfix list (peekViewResult.lineForeground)
     -- Inline hints
     InlayHint { fg = gray4, bg = '#353638' }, -- editorInlayHint.foreground/background
     InlayHintType { InlayHint }, -- editorInlayHint.typeBackground/typeForeground
@@ -96,7 +97,7 @@ local theme = lush(function(injected_functions)
     CursorColumn { bg = black3 },
     ColorColumn { bg = black2 }, -- #5a5a5a in VSCode (editorRuler.foreground) it's too bright
     Conceal { fg = gray2 },
-    Cursor { fg = gray, bg = '#aeafad' },
+    Cursor { fg = norm_bg, bg = norm_fg },
     -- lCursor { },
     -- CursorIM { },
     Directory { fg = blue },
@@ -125,15 +126,15 @@ local theme = lush(function(injected_functions)
     MoreMsg { fg = norm_fg },
     NonText { fg = gray2 },
     Normal { fg = norm_fg, bg = norm_bg },
-    NormalFloat { Normal },
     -- NormalNC { },
-    Pmenu { fg = norm_fg, bg = black2 }, -- editorSuggestWidget.background/foreground
+    Pmenu { fg = norm_fg, bg = norm_bg }, -- editorSuggestWidget.background/foreground
     PmenuSel { fg = white, bg = selection_blue },
-    PmenuSbar { bg = black2 },
+    PmenuSbar { bg = norm_bg },
     PmenuThumb { bg = '#343538' }, -- the slider on the scrollbar of Pmenu (scrollbarSlider.background based on PmenuSbar as its background)
+    NormalFloat { Pmenu },
     Question { fg = blue },
     QuickFixLine { QfSelection },
-    Search { bg = '#613214' },
+    Search { bg = '#623315' }, -- editor.findMatchHighlightBackground
     SpecialKey { NonText },
     SpellBad { gui = 'undercurl', sp = error_red },
     SpellCap { gui = 'undercurl', sp = warn_yellow},
@@ -145,7 +146,7 @@ local theme = lush(function(injected_functions)
     TabLineFill { fg = 'NONE', bg = black4 }, -- editorGroupHeader.tabsBackground
     TabLineSel { fg = white, bg = norm_bg }, -- tab.activeBackground, tab.activeForeground
     Title { fg = blue, gui = 'bold' },
-    Visual { bg = '#264F78' },
+    Visual { bg = '#264F78' }, -- editor.selectionBackground
     -- VisualNOS { },
     WarningMsg { fg = warn_yellow },
     Whitespace { fg = '#3e3e3d' },
@@ -207,7 +208,7 @@ local theme = lush(function(injected_functions)
     LspReferenceWrite { SelectionHighlightBackground },
     LspCodeLens { CodeLens },
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
-    LspSignatureActiveParameter { fg = bright_blue },
+    LspSignatureActiveParameter { MatchedCharacters },
 
     --
     -- Diagnostics
@@ -405,7 +406,7 @@ local theme = lush(function(injected_functions)
     -- nvim-cmp
     --
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
-    CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
+    CmpItemAbbrMatch { MatchedCharacters, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
     CmpItemMenu { Description },
     CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
@@ -551,7 +552,7 @@ local theme = lush(function(injected_functions)
     UfoFoldedBg { bg = folded_blue },
     UfoCursorFoldedLine { bg = '#2F3C48', gui = 'bold, italic' },
     UfoPreviewSbar { PeekViewNormal },
-    UfoPreviewThumb { bg = '#394a4b' },
+    UfoPreviewThumb { ScrollbarSlider },
     UfoFoldedEllipsis { fg = '#989ca0' },
 
     --
@@ -562,14 +563,8 @@ local theme = lush(function(injected_functions)
     BqfPreviewCursor { Cursor },
     BqfPreviewCursorLine { PeekViewCursorLine },
     BqfPreviewRange { PeekViewMatchHighlight },
-    BqfPreviewBufLabel { fg = gray4 }, -- descriptionForeground
+    BqfPreviewBufLabel { Description },
     BqfSign { fg = blue_green },
-
-    --
-    -- Symbols-outline
-    --
-    FocusedSymbol { fg = white, bg = selection_blue },
-    SymbolsOutlineConnector { fg = '#585858' },
 
     --
     -- mg979/tabline.nvim
@@ -602,8 +597,8 @@ local theme = lush(function(injected_functions)
     --
     -- git-messenger.vim
     --
-    gitmessengerPopupNormal { NormalFloat },
     gitmessengerHeader { fg = '#40a6ff' },  -- textLink.activeForeground
+    gitmessengerPopupNormal { NormalFloat },
     gitmessengerHash { NormalFloat },
     gitmessengerHistory { NormalFloat },
     gitmessengerEmail { NormalFloat },
