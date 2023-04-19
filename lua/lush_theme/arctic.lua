@@ -125,7 +125,7 @@ local theme = lush(function(injected_functions)
     MoreMsg { fg = norm_fg },
     NonText { fg = gray2 },
     Normal { fg = norm_fg, bg = norm_bg },
-    -- NormalFloat { },
+    NormalFloat { Normal },
     -- NormalNC { },
     Pmenu { fg = norm_fg, bg = black2 }, -- editorSuggestWidget.background/foreground
     PmenuSel { fg = white, bg = selection_blue },
@@ -438,6 +438,15 @@ local theme = lush(function(injected_functions)
     SuggestWidgetSelect { bg = selection_blue },
 
     --
+    -- diff
+    --
+    -- VSCode doesn't have foreground for git added/removed/changed, so here I
+    -- use the corresponding colors for gutter instead.
+    diffAdded { fg = '#2ea043' },
+    diffRemoved { fg = '#f85149' },
+    diffChanged { fg = '#0078d4' },
+
+    --
     -- Aerial
     --
     AerialTextIcon { CmpItemKindText },
@@ -589,6 +598,16 @@ local theme = lush(function(injected_functions)
     THiddenSep { TabBorder },
     TExtraSep { TabBorder },
     TSpecialSep { TabBorder },
+
+    --
+    -- git-messenger.vim
+    --
+    gitmessengerPopupNormal { NormalFloat },
+    gitmessengerHeader { fg = '#40a6ff' },  -- textLink.activeForeground
+    gitmessengerHash { NormalFloat },
+    gitmessengerHistory { NormalFloat },
+    gitmessengerEmail { NormalFloat },
+
   }
 end)
 ---@diagnostic enable
