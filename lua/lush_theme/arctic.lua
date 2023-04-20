@@ -383,7 +383,10 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.decorator") { fg = yellow },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.function.defaultLibrary") { fg = yellow },
+    sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
+    sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.macro") },
     sym("@lsp.typemod.variable.readonly") { fg = blue2 },
     sym("@lsp.typemod.property.readonly") { fg = blue2 },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
