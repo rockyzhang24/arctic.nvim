@@ -1,13 +1,14 @@
 # Darkplus Alacritty Colors
+
 colors:
   # Default colors
   primary:
-    background: '0x1e1e1e'
-    foreground: '0xd4d4d4'
+    background: '0x1f1f1f'
+    foreground: '0xcccccc'
 
   # Normal colors
   normal:
-    black:   '0x1e1e1e'
+    black:   '0x1f1f1f'
     red:     '0xf44747'
     green:   '0x6a9955'
     yellow:  '0xd7ba7d'
