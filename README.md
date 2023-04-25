@@ -4,9 +4,11 @@
 
 A Neovim theme ported from the VSCode Dark+ theme
 
-</div>
+💁 Checkout [v2 branch](https://github.com/rockyzhang24/arctic.nvim/tree/v2) for **Dark Modern** theme, the successor of Dark+
 
 <img width="1774" alt="Screen Shot 2022-07-07 at 13 51 44" src="https://user-images.githubusercontent.com/11582667/177871063-15dc3f88-8d2c-4c2f-8a92-65da8baad3e2.png">
+
+</div>
 
 ## Introduction
 
@@ -17,9 +19,9 @@ UI. I only adapted the plugins I was using, but presumably most plugins with
 their default highlight settings should look harmonious. If you need a specific
 support, please open an issue.
 
-## Version 2
+## New Version
 
-VSCode is rolling out the successor of Dark+ that is called **Dark+ V2**. Currently
+VSCode is rolling out the successor of Dark+ that is called **Dark Modern**. Currently
 only the UI theme colors have been updated and it is still in the experimental
 stage. If you want to give it a shot, please checkout the `v2` branch.
 
