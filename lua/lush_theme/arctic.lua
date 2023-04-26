@@ -66,7 +66,8 @@ local theme = lush(function(injected_functions)
     Icon { fg = '#c5c5c5' },
     Description { fg = '#989898' }, -- descriptionForeground
     ProgressBar { fg = '#0e70c0' }, -- progressBar.background
-    Hint { fg = bright_blue }, -- for the hint letter in options, e.g., the q in [q]uickfix
+    MatchedCharacters { fg = bright_blue }, -- editorSuggestWidget.highlightForeground
+    Hint { MatchedCharacters }, -- for the hint letter in options, e.g., the q in [q]uickfix
     -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
     -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
     -- so the color will be 9cdcfeaa. Converting hexa to hex gets 729db4.
@@ -115,17 +116,17 @@ local theme = lush(function(injected_functions)
     -- Substitute { },
     MatchParen { bg = gray, gui = 'bold, underline' },
     ModeMsg { fg = norm_fg },
-    -- MsgArea { },
+    MsgArea { fg = norm_fg },
     -- MsgSeparator { },
     MoreMsg { fg = norm_fg },
     NonText { fg = gray2 },
     Normal { fg = norm_fg, bg = norm_bg },
-    -- NormalFloat { },
     -- NormalNC { },
     Pmenu { fg = norm_fg, bg = black2 },
     PmenuSel { fg = white, bg = selection_blue },
     PmenuSbar { bg = black2 },
     PmenuThumb { bg = '#474747' },
+    NormalFloat { Pmenu },
     Question { fg = blue },
     QuickFixLine { QfSelection },
     Search { bg = '#613214' },
@@ -202,7 +203,7 @@ local theme = lush(function(injected_functions)
     LspReferenceWrite { SelectionHighlightBackground },
     LspCodeLens { CodeLens },
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
-    LspSignatureActiveParameter { fg = bright_blue },
+    LspSignatureActiveParameter { MatchedCharacters },
 
     --
     -- Diagnostics
@@ -256,7 +257,7 @@ local theme = lush(function(injected_functions)
     -- Punctuation
     sym("@punctuation.delimiter") { fg = norm_fg },
     sym("@punctuation.bracket") { fg = norm_fg },
-    sym("@punctuation.special") { fg = norm_fg },
+    sym("@punctuation.special") { fg = blue },
 
     -- Literals
     -- sym("@string") { },
@@ -320,7 +321,7 @@ local theme = lush(function(injected_functions)
     sym("@text.underline") { fg = norm_fg, gui = 'underline' },
     sym("@text.strike") { fg = norm_fg, gui = 'strikethrough' },
     sym("@text.title") { Title, gui = 'bold' },
-    -- sym("@text.literal") { },
+    sym("@text.literal") { fg = orange },
     -- sym("@text.quote") { },
     sym("@text.uri") { Tag },
     sym("@text.math") { fg = blue_green },
@@ -336,7 +337,7 @@ local theme = lush(function(injected_functions)
 
     -- Tags
     sym("@tag") { fg = blue },
-    -- sym("@tag.attribute") { },
+    sym("@tag.attribute") { fg = light_blue },
     sym("@tag.delimiter") { fg = gray3 },
 
     -- Conceal
@@ -377,7 +378,10 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.decorator") { fg = yellow },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.function.defaultLibrary") { fg = yellow },
+    sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
+    sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.macro") },
     sym("@lsp.typemod.variable.readonly") { fg = blue2 },
     sym("@lsp.typemod.property.readonly") { fg = blue2 },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
@@ -400,7 +404,7 @@ local theme = lush(function(injected_functions)
     -- nvim-cmp
     --
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
-    CmpItemAbbrMatch { fg =  bright_blue, bg = 'NONE' },
+    CmpItemAbbrMatch { MatchedCharacters, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
     CmpItemMenu { Description },
     CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
@@ -431,6 +435,15 @@ local theme = lush(function(injected_functions)
     -- Predefined for the winhighlight config of cmp float window
     SuggestWidgetBorder { FloatBorder },
     SuggestWidgetSelect { bg = selection_blue },
+
+    --
+    -- diff
+    --
+    -- VSCode doesn't have foreground for git added/removed/changed, so here I
+    -- use the corresponding colors for gutter instead.
+    diffAdded { GutterGitAdded },
+    diffRemoved { GutterGitDeleted },
+    diffChanged { GutterGitModified },
 
     --
     -- Aerial
