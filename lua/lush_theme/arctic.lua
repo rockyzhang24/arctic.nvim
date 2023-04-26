@@ -446,9 +446,9 @@ local theme = lush(function(injected_functions)
     --
     -- VSCode doesn't have foreground for git added/removed/changed, so here I
     -- use the corresponding colors for gutter instead.
-    diffAdded { fg = '#2ea043' },
-    diffRemoved { fg = '#f85149' },
-    diffChanged { fg = '#0078d4' },
+    diffAdded { GutterGitAdded },
+    diffRemoved { GutterGitDeleted },
+    diffChanged { GutterGitModified },
 
     --
     -- Aerial
