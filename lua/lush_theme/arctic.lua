@@ -6,17 +6,18 @@ local lush = require('lush')
 local norm_fg = '#cccccc'
 local norm_bg = '#1f1f1f'
 
+local light_red = '#D16969'
+local orange = '#f9ae28'
+local brown = '#CE9178'
+local yellow = '#DCDCAA'
+local yellow_orange = '#D7BA7D'
+local green = '#6A9955'
+local blue_green = '#4EC9B0'
+local light_green = '#B5CEA8'
 local blue = '#569CD6'
 local blue2 = '#4fc1ff'
 local light_blue = '#9CDCFE'
 local bright_blue = '#2aaaff'
-local green = '#6A9955'
-local blue_green = '#4EC9B0'
-local light_green = '#B5CEA8'
-local light_red = '#D16969'
-local orange = '#CE9178'
-local yellow_orange = '#D7BA7D'
-local yellow = '#DCDCAA'
 local pink = '#C586C0'
 
 local white = '#ffffff'
@@ -160,7 +161,7 @@ local theme = lush(function(injected_functions)
     Comment { fg = green, gui = 'italic' },
 
     Constant { fg = blue },
-    String { fg = orange },
+    String { fg = brown },
     Character { Constant },
     Number { fg = light_green },
     Boolean { Constant },
@@ -266,7 +267,7 @@ local theme = lush(function(injected_functions)
 
     -- Literals
     -- sym("@string") { },
-    sym("@string.documentation") { fg = orange },
+    sym("@string.documentation") { fg = brown },
     sym("@string.regex") { fg = light_red },
     sym("@string.escape") { fg = yellow_orange },
     -- sym("@string.special") { },
@@ -326,13 +327,13 @@ local theme = lush(function(injected_functions)
     sym("@text.underline") { fg = norm_fg, gui = 'underline' },
     sym("@text.strike") { fg = norm_fg, gui = 'strikethrough' },
     sym("@text.title") { Title, gui = 'bold' },
-    sym("@text.literal") { fg = orange },
+    sym("@text.literal") { fg = brown },
     -- sym("@text.quote") { },
     sym("@text.uri") { Tag },
     sym("@text.math") { fg = blue_green },
     -- sym("@text.environment") { },
     -- sym("@text.environment.name") { },
-    sym("@text.reference") { fg = orange },
+    sym("@text.reference") { fg = brown },
     sym("@text.todo") { Todo },
     sym("@text.note") { fg = info_blue },
     sym("@text.warning") { fg = warn_yellow },
@@ -365,7 +366,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.interface") { fg = blue_green },
     sym("@lsp.type.struct") { fg = blue_green },
     sym("@lsp.type.typeParameter") { fg = blue_green },
-    sym("@lsp.type.parameter") { fg = light_blue },
+    sym("@lsp.type.parameter") { fg = orange }, -- Use a conspicuous color for semantic parameters (VSCode uses the common light_blue)
     sym("@lsp.type.variable") { fg = light_blue },
     sym("@lsp.type.property") { fg = light_blue },
     sym("@lsp.type.enumMember") { fg = blue2 },
@@ -376,7 +377,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.keyword") { fg = blue },
     sym("@lsp.type.modifier") { fg = blue },
     sym("@lsp.type.comment") { fg = green },
-    sym("@lsp.type.string") { fg = orange },
+    sym("@lsp.type.string") { fg = brown },
     sym("@lsp.type.number") { fg = light_green },
     sym("@lsp.type.regexp") { fg = light_red },
     sym("@lsp.type.operator") { fg = norm_fg },
