@@ -358,7 +358,7 @@ local theme = lush(function(injected_functions)
     --
     -- The help page :h lsp-semantic-highlight
     -- A short guide: https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
-    -- Token types and modifiers are described here: https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
+    -- Token types and modifiers are described here: http://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
     sym("@lsp.type.namespace") { fg = blue_green },
     sym("@lsp.type.type") { fg = blue_green },
     sym("@lsp.type.class") { fg = blue_green },
@@ -382,14 +382,19 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.regexp") { fg = light_red },
     sym("@lsp.type.operator") { fg = norm_fg },
     sym("@lsp.type.decorator") { fg = yellow },
+    sym("@lsp.type.escapeSequence") { sym("@string.escape") },
+    sym("@lsp.type.formatSpecifier") { fg = light_blue },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
     sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
     sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
     sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.macro") },
+    -- sym("@lsp.typemod.enum.defaultLibrary") {},
+    -- sym("@lsp.typemod.enumMember.defaultLibrary") {},
     sym("@lsp.typemod.variable.readonly") { fg = blue2 },
     sym("@lsp.typemod.property.readonly") { fg = blue2 },
+    sym("@lsp.typemod.keyword.async") { sym("@keyword.coroutine") },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
     -- other lsps that inject tokens in comments.
     -- Ref: https://github.com/folke/tokyonight.nvim/pull/340
@@ -606,6 +611,13 @@ local theme = lush(function(injected_functions)
     gitmessengerHash { NormalFloat },
     gitmessengerHistory { NormalFloat },
     gitmessengerEmail { NormalFloat },
+
+    --
+    -- nvim-treesitter-context
+    --
+    -- TreesitterContext { },
+    -- TreesitterContextLineNumber { },
+    -- TreesitterContextBottom { },
 
   }
 end)
