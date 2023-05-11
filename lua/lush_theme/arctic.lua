@@ -488,7 +488,7 @@ local theme = lush(function(injected_functions)
     --
     -- nvim-navic
     --
-    NavicText { CmpItemKindText },
+    NavicText { Winbar },
     NavicIconsFile { CmpItemKindFile },
     NavicIconsModule { CmpItemKindModule },
     NavicIconsNamespace { NavicText },
