@@ -202,6 +202,15 @@ local theme = lush(function(injected_functions)
     Todo { fg = norm_bg, bg = yellow_orange, gui = 'bold' },
 
     --
+    -- diff
+    --
+    -- VSCode doesn't have foreground for git added/removed/changed, so here I
+    -- use the corresponding colors for gutter instead.
+    diffAdded { GutterGitAdded },
+    diffRemoved { GutterGitDeleted },
+    diffChanged { GutterGitModified },
+
+    --
     -- LSP
     --
     LspReferenceText { SelectionHighlightBackground },
@@ -448,15 +457,6 @@ local theme = lush(function(injected_functions)
     SuggestWidgetSelect { bg = selection_blue },
 
     --
-    -- diff
-    --
-    -- VSCode doesn't have foreground for git added/removed/changed, so here I
-    -- use the corresponding colors for gutter instead.
-    diffAdded { GutterGitAdded },
-    diffRemoved { GutterGitDeleted },
-    diffChanged { GutterGitModified },
-
-    --
     -- Aerial
     --
     AerialTextIcon { CmpItemKindText },
@@ -484,6 +484,38 @@ local theme = lush(function(injected_functions)
     AerialEventIcon { CmpItemKindEvent },
     AerialOperatorIcon { CmpItemKindOperator },
     AerialTypeParameterIcon { CmpItemKindTypeParameter },
+
+    --
+    -- nvim-navic
+    --
+    NavicText { CmpItemKindText },
+    NavicIconsFile { CmpItemKindFile },
+    NavicIconsModule { CmpItemKindModule },
+    NavicIconsNamespace { NavicText },
+    NavicIconsPackage { NavicText },
+    NavicIconsClass { CmpItemKindClass },
+    NavicIconsMethod { CmpItemKindMethod },
+    NavicIconsProperty { CmpItemKindProperty },
+    NavicIconsField { CmpItemKindField },
+    NavicIconsConstructor { CmpItemKindConstructor },
+    NavicIconsEnum { CmpItemKindEnum },
+    NavicIconsInterface { CmpItemKindInterface },
+    NavicIconsFunction { CmpItemKindFunction },
+    NavicIconsVariable { CmpItemKindVariable },
+    NavicIconsConstant { CmpItemKindConstant },
+    NavicIconsString { NavicText },
+    NavicIconsNumber { NavicText },
+    NavicIconsBoolean { NavicText },
+    NavicIconsArray { NavicText },
+    NavicIconsObject { NavicText },
+    NavicIconsKey { NavicText },
+    NavicIconsNull { NavicText },
+    NavicIconsEnumMember { CmpItemKindEnumMember },
+    NavicIconsStruct { CmpItemKindStruct },
+    NavicIconsEvent { CmpItemKindEvent },
+    NavicIconsOperator { CmpItemKindOperator },
+    NavicIconsTypeParameter { CmpItemKindTypeParameter },
+    NavicSeparator { NavicText },
 
     --
     -- Gitsigns
