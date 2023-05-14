@@ -647,8 +647,8 @@ local theme = lush(function(injected_functions)
     --
     -- nvim-treesitter-context
     --
-    -- TreesitterContext { },
-    -- TreesitterContextLineNumber { },
+    TreesitterContext { bg = black4 },
+    TreesitterContextLineNumber { fg = '#4d535a' }, -- 30% darker based on LineNr
     -- TreesitterContextBottom { },
 
   }
