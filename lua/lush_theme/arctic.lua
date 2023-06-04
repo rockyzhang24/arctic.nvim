@@ -51,6 +51,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
+    NormalBorder { fg = '#313131' }, -- widget.border
     TabBorder { fg = '#2a2a2a' }, -- tab.border
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
@@ -650,10 +651,24 @@ local theme = lush(function(injected_functions)
     --
     -- nvim-treesitter-context
     --
-    TreesitterContext { bg = black4 },
+    -- TreesitterContext { bg = black4 },
     TreesitterContextLineNumber { fg = '#4d535a' }, -- 30% darker based on LineNr
-    -- TreesitterContextBottom { },
+    TreesitterContextBottom { gui = 'underline', sp = NormalBorder.fg },
 
+    --
+    -- nvim-scrollview
+    --
+    ScrollView { ScrollbarSlider },
+    ScrollViewRestricted { ScrollView },
+    ScrollViewConflictsTop { DiffAdd },
+    ScrollViewConflictsMiddle { DiffAdd },
+    ScrollViewConflictsBottom { DiffAdd },
+    ScrollViewCursor { CursorLineNr },
+    ScrollViewDiagnosticsError { DiagnosticError },
+    ScrollViewDiagnosticsWarn { DiagnosticWarn },
+    ScrollViewDiagnosticsHint { DiagnosticHint },
+    ScrollViewDiagnosticsInfo { DiagnosticInfo },
+    ScrollViewSearch { fg = '#9e6a03' },
   }
 end)
 ---@diagnostic enable
