@@ -51,7 +51,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
-    NormalBorder { fg = '#313131' }, -- widget.border
+    GeneralBorder { fg = '#313131' }, -- The general border (widget.border)
     TabBorder { fg = '#2a2a2a' }, -- tab.border
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
@@ -61,7 +61,7 @@ local theme = lush(function(injected_functions)
     GutterGitDeleted { fg = '#f85149' }, -- editorGutter.deletedBackground
     GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg }, -- breadcrumb.foreground/background
-    ScrollbarSlider { bg = '#2f3033' }, -- the slider on the general scrollbar (scrollbarSlider.background based on norm_bg as its background)
+    ScrollbarSlider { bg = '#494d53' }, -- the slider on the general scrollbar (scrollbarSlider.activeBackground instead of scrollbarSlider.background for being brighter)
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = norm_bg }, -- peekViewEditor.background
     PeekViewCursorLine { bg = black3 },
@@ -653,7 +653,7 @@ local theme = lush(function(injected_functions)
     --
     -- TreesitterContext { bg = black4 },
     TreesitterContextLineNumber { fg = '#4d535a' }, -- 30% darker based on LineNr
-    TreesitterContextBottom { gui = 'underline', sp = NormalBorder.fg },
+    TreesitterContextBottom { gui = 'underline', sp = GeneralBorder.fg },
 
     --
     -- nvim-scrollview
