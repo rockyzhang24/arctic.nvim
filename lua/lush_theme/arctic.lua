@@ -7,7 +7,7 @@ local norm_fg = '#cccccc'
 local norm_bg = '#1f1f1f'
 
 local light_red = '#D16969'
-local orange = '#f9ae28'
+local orange = '#ff9e64'
 local brown = '#CE9178'
 local yellow = '#DCDCAA'
 local yellow_orange = '#D7BA7D'
@@ -61,9 +61,10 @@ local theme = lush(function(injected_functions)
     GutterGitDeleted { fg = '#f85149' }, -- editorGutter.deletedBackground
     GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg }, -- breadcrumb.foreground/background
-    ScrollbarSlider { bg = '#494d53' }, -- the slider on the general scrollbar (scrollbarSlider.activeBackground instead of scrollbarSlider.background for being brighter)
+    ScrollbarSlider { bg = '#494d53' }, -- the slider on the scrollbar (scrollbarSlider.activeBackground instead of scrollbarSlider.background for being brighter)
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = norm_bg }, -- peekViewEditor.background
+    PeekViewTitle { fg = white }, -- peekViewTitleLabel.foreground
     PeekViewCursorLine { bg = black3 },
     PeekViewMatchHighlight { bg ='#5d4616' }, -- peekViewEditor.matchHighlightBackground
     GhostText { fg = '#6b6b6b' }, -- editorGhostText.foreground
@@ -132,7 +133,7 @@ local theme = lush(function(injected_functions)
     Pmenu { fg = norm_fg, bg = norm_bg }, -- editorSuggestWidget.background/foreground
     PmenuSel { fg = white, bg = selection_blue },
     PmenuSbar { bg = norm_bg },
-    PmenuThumb { bg = '#343538' }, -- the slider on the scrollbar of Pmenu (scrollbarSlider.background based on PmenuSbar as its background)
+    PmenuThumb { ScrollbarSlider },
     NormalFloat { Pmenu },
     Question { fg = blue },
     QuickFixLine { QfSelection },
@@ -605,6 +606,9 @@ local theme = lush(function(injected_functions)
     --
     BqfPreviewFloat { PeekViewNormal },
     BqfPreviewBorder { PeekViewBorder },
+    BqfPreviewTitle { PeekViewTitle },
+    BqfPreviewSbar { PmenuSbar },
+    BqfPreviewThumb { PmenuThumb },
     BqfPreviewCursor { Cursor },
     BqfPreviewCursorLine { PeekViewCursorLine },
     BqfPreviewRange { PeekViewMatchHighlight },
