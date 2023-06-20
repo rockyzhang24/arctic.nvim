@@ -7,7 +7,7 @@ local norm_fg = '#cccccc'
 local norm_bg = '#1f1f1f'
 
 local light_red = '#D16969'
-local orange = '#ff9e64'
+local orange = '#f9ae28'
 local brown = '#CE9178'
 local yellow = '#DCDCAA'
 local yellow_orange = '#D7BA7D'
@@ -51,7 +51,6 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
-    GeneralBorder { fg = '#313131' }, -- The general border (widget.border)
     TabBorder { fg = '#2a2a2a' }, -- tab.border
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
@@ -221,6 +220,7 @@ local theme = lush(function(injected_functions)
     LspCodeLens { CodeLens },
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
     LspSignatureActiveParameter { MatchedCharacters },
+    LspInlayHint { InlayHint },
 
     --
     -- Diagnostics
@@ -250,7 +250,7 @@ local theme = lush(function(injected_functions)
     DiagnosticSignInfo { DiagnosticInfo },
     DiagnosticSignHint { DiagnosticHint },
     DiagnosticSignOk { DiagnosticOk },
-    DiagnosticUnnecessary { UnnecessaryCode, gui = 'underdashed' },
+    DiagnosticUnnecessary { UnnecessaryCode, gui = 'undercurl' },
     DiagnosticDeprecated { fg = gray3, gui = 'strikethrough' },
 
     --
@@ -657,7 +657,7 @@ local theme = lush(function(injected_functions)
     --
     -- TreesitterContext { bg = black4 },
     TreesitterContextLineNumber { fg = '#4d535a' }, -- 30% darker based on LineNr
-    TreesitterContextBottom { gui = 'underline', sp = GeneralBorder.fg },
+    TreesitterContextBottom { gui = 'underline', sp = FloatBorder.fg },
 
     --
     -- nvim-scrollview
@@ -673,6 +673,12 @@ local theme = lush(function(injected_functions)
     ScrollViewDiagnosticsHint { DiagnosticHint },
     ScrollViewDiagnosticsInfo { DiagnosticInfo },
     ScrollViewSearch { fg = '#9e6a03' },
+
+    --
+    -- vim-floaterm
+    --
+    Floaterm { Normal },
+    FloatermBorder { FloatBorder },
   }
 end)
 ---@diagnostic enable
