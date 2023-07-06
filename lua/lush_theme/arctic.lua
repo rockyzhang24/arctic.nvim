@@ -91,7 +91,7 @@ local theme = lush(function(injected_functions)
     QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
     QfText { fg = '#bbbbbb' }, -- normal text in quickfix list (peekViewResult.lineForeground)
     -- Inline hints
-    InlayHint { fg = gray4, bg = '#353638' }, -- editorInlayHint.foreground/background
+    InlayHint { fg = norm_fg, bg = '#2b2c2d' }, -- editorInlayHint.foreground/background
     InlayHintType { InlayHint }, -- editorInlayHint.typeBackground/typeForeground
 
     --
