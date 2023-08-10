@@ -26,7 +26,7 @@ local white = '#ffffff'
 local gray = '#51504f' -- StatuslineNC's fg
 local gray2 = '#6e7681' -- LineNr (editorLineNumber.foreground)
 local gray3 = '#808080'
-local gray4 = '#8b949e'
+local gray4 = '#9d9d9d'
 local black = '#2d2d2d' -- TabLine
 local black2 = '#252526'
 local black3 = '#282828' -- CursorLine (editor.lineHighlightBorder). Or use #2a2d2e (list.hoverBackground) for a brighter color
@@ -53,7 +53,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
-    TabBorder { fg = '#2a2a2a' }, -- tab.border
+    TabBorder { fg = '#2b2b2b' }, -- tab.border
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
     LightBulb { fg = '#ffcc00' }, -- editorLightBulb.foreground
@@ -61,10 +61,10 @@ local theme = lush(function(injected_functions)
     GutterGitAdded { fg = '#2ea043' }, -- editorGutter.addedBackground
     GutterGitDeleted { fg = '#f85149' }, -- editorGutter.deletedBackground
     GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
-    Breadcrumb { fg = '#a9a9a9', bg = norm_bg }, -- breadcrumb.foreground/background
-    ScrollbarSlider { bg = '#494d53' }, -- the slider on the scrollbar (scrollbarSlider.activeBackground instead of scrollbarSlider.background for being brighter)
+    Breadcrumb { fg = '#a9a9a9', bg = Normal.bg }, -- breadcrumb.foreground/background
+    ScrollbarSlider { bg = '#434343' }, -- the slider on the scrollbar (scrollbarSlider.activeBackground)
     PeekViewBorder { fg = '#3794ff' },
-    PeekViewNormal { bg = norm_bg }, -- peekViewEditor.background
+    PeekViewNormal { bg = Normal.bg }, -- peekViewEditor.background
     PeekViewTitle { fg = white }, -- peekViewTitleLabel.foreground
     PeekViewCursorLine { bg = black3 },
     PeekViewMatchHighlight { bg ='#5d4616' }, -- peekViewEditor.matchHighlightBackground
@@ -91,7 +91,7 @@ local theme = lush(function(injected_functions)
     QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
     QfText { fg = '#bbbbbb' }, -- normal text in quickfix list (peekViewResult.lineForeground)
     -- Inline hints
-    InlayHint { fg = norm_fg, bg = '#2b2c2d' }, -- editorInlayHint.foreground/background
+    InlayHint { fg = '#969696', bg = '#242424' }, -- editorInlayHint.foreground/background
     InlayHintType { InlayHint }, -- editorInlayHint.typeBackground/typeForeground
 
     --
@@ -109,7 +109,7 @@ local theme = lush(function(injected_functions)
     DiffDelete { DiffLineDeleted },
     DiffChange { DiffLineChanged },
     DiffText { DiffTextChanged },
-    EndOfBuffer { fg = norm_bg },
+    EndOfBuffer { fg = Normal.bg },
     -- TermCursor { },
     -- TermCursorNC { },
     ErrorMsg { fg = error_red },
@@ -120,7 +120,7 @@ local theme = lush(function(injected_functions)
     Folded { bg = folded_blue },
     CursorLineFold { CursorLineNr },
     FoldColumn { LineNr }, -- #c5c5c5 in VSCode (editorGutter.foldingControlForeground) and it's too bright
-    SignColumn { bg = norm_bg },
+    SignColumn { bg = Normal.bg },
     IncSearch { bg = '#9e6a03' }, -- editor.findMatchBackground
     -- Substitute { },
     MatchParen { bg = gray, gui = 'bold, underline' },
@@ -131,9 +131,9 @@ local theme = lush(function(injected_functions)
     NonText { fg = gray2 },
     Normal { fg = norm_fg, bg = norm_bg },
     -- NormalNC { },
-    Pmenu { fg = norm_fg, bg = norm_bg }, -- editorSuggestWidget.background/foreground
+    Pmenu { fg = norm_fg, bg = Normal.bg }, -- editorSuggestWidget.background/foreground
     PmenuSel { fg = white, bg = selection_blue },
-    PmenuSbar { bg = norm_bg },
+    PmenuSbar { bg = Normal.bg },
     PmenuThumb { ScrollbarSlider },
     NormalFloat { Pmenu },
     Question { fg = dark_blue },
@@ -146,9 +146,9 @@ local theme = lush(function(injected_functions)
     SpellRare  { gui = 'undercurl', sp = info_blue  },
     StatusLine { bg = black4 },
     StatusLineNC { fg = gray, bg = black4 },
-    TabLine { fg = '#8c8c8c', bg = black4 }, -- tab.inactiveBackground, tab.inactiveForeground
+    TabLine { fg = gray4, bg = black4 }, -- tab.inactiveBackground, tab.inactiveForeground
     TabLineFill { fg = 'NONE', bg = black4 }, -- editorGroupHeader.tabsBackground
-    TabLineSel { fg = white, bg = norm_bg }, -- tab.activeBackground, tab.activeForeground
+    TabLineSel { fg = white, bg = Normal.bg }, -- tab.activeBackground, tab.activeForeground
     Title { fg = dark_blue, gui = 'bold' },
     Visual { bg = '#264F78' }, -- editor.selectionBackground
     -- VisualNOS { },
@@ -395,22 +395,22 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.regexp") { fg = dark_red },
     sym("@lsp.type.operator") { fg = norm_fg },
     sym("@lsp.type.decorator") { fg = yellow },
-    sym("@lsp.type.escapeSequence") { sym("@string.escape") },
+    sym("@lsp.type.escapeSequence") { fg = yellow_orange },
     sym("@lsp.type.formatSpecifier") { fg = light_blue },
-    sym("@lsp.type.builtinType") { sym("@type.builtin") },
-    sym("@lsp.type.typeAlias") { sym("@type.definition") },
+    sym("@lsp.type.builtinType") { fg = dark_blue },
+    sym("@lsp.type.typeAlias") { fg = blue_green },
     sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
-    sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
-    sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
-    sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.macro") },
+    sym("@lsp.typemod.variable.defaultLibrary") { fg = dark_blue },
+    sym("@lsp.typemod.function.defaultLibrary") { Function },
+    sym("@lsp.typemod.method.defaultLibrary") { Function },
+    sym("@lsp.typemod.macro.defaultLibrary") { Function },
     -- sym("@lsp.typemod.enum.defaultLibrary") {},
     -- sym("@lsp.typemod.enumMember.defaultLibrary") {},
     sym("@lsp.typemod.variable.readonly") { fg = blue },
     sym("@lsp.typemod.property.readonly") { fg = blue },
-    sym("@lsp.typemod.keyword.async") { sym("@keyword.coroutine") },
+    sym("@lsp.typemod.keyword.async") { fg = dark_pink },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
     -- other lsps that inject tokens in comments.
     -- Ref: https://github.com/folke/tokyonight.nvim/pull/340
@@ -626,7 +626,7 @@ local theme = lush(function(injected_functions)
     TExtra { TabLine },
     TSpecial { TabLine },
     TFill { TabLineFill },
-    TCorner { fg = white, bg = norm_bg },
+    TCorner { fg = white, bg = Normal.bg },
     TNumSel { TSelect },
     TNum { TabLine },
     TSelectMod { TSelect },
