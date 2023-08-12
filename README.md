@@ -40,6 +40,21 @@ Using `packer`
 use {"rockyzhang24/arctic.nvim", requires = {"rktjmp/lush.nvim"}}
 ```
 
+Using `lazy.nvim`
+
+```lua
+{
+        "rockyzhang24/arctic.nvim",
+	dependencies = { "rktjmp/lush.nvim" },
+	name = "arctic",
+	branch = "main",
+	priority = 1000,
+        config = function()
+            vim.cmd("colorscheme arctic")
+        end
+}
+```
+
 ## Usage
 
 Simply set the colorscheme with the builtin command `:colorscheme`
