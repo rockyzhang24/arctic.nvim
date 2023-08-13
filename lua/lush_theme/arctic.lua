@@ -400,7 +400,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.variable.defaultLibrary") { dark_blue },
+    sym("@lsp.typemod.variable.defaultLibrary") { fg = dark_blue },
     sym("@lsp.typemod.function.defaultLibrary") { Function },
     sym("@lsp.typemod.method.defaultLibrary") { Function },
     sym("@lsp.typemod.macro.defaultLibrary") { Function },
