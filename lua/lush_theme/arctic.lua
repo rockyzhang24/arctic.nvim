@@ -6,22 +6,25 @@ local lush = require('lush')
 local norm_fg = '#D4D4D4'
 local norm_bg = '#1E1E1E'
 
-local blue = '#569CD6'
-local blue2 = '#4fc1ff'
-local light_blue = '#9CDCFE'
-local bright_blue = '#2aaaff'
+local dark_red = '#D16969'
+local orange = '#f9ae28'
+local brown = '#CE9178'
+local yellow = '#DCDCAA'
+local yellow_orange = '#D7BA7D'
 local green = '#6A9955'
 local blue_green = '#4EC9B0'
 local light_green = '#B5CEA8'
-local light_red = '#D16969'
-local orange = '#CE9178'
-local yellow_orange = '#D7BA7D'
-local yellow = '#DCDCAA'
-local pink = '#C586C0'
+local blue = '#4fc1ff'
+local blue2 = '#2aaaff'
+local light_blue = '#9CDCFE'
+local dark_blue = '#569CD6'
+local dark_pink = '#C586C0'
+local bright_pink = '#f92672'
+local purple = '#ae81ff'
 
 local white = '#ffffff'
 local gray = '#51504f'
-local gray2 = '#858585'
+local gray2 = '#858585' -- LineNr (editorLineNumber.foreground)
 local gray3 = '#808080'
 local black = '#2d2d2d' -- TabLine
 local black2 = '#252526' -- Statusline, TabLineFill, Pmenu
@@ -53,20 +56,21 @@ local theme = lush(function(injected_functions)
     SelectionHighlightBackground { bg = '#333a40' },
     LightBulb { fg = '#ffcc00' },
     CodeLens { fg = '#999999' },
-    GutterGitModified { fg = '#1b81a8' },
     GutterGitAdded { fg = '#487e02' },
     GutterGitDeleted { fg = '#f14c4c' },
+    GutterGitModified { fg = '#1b81a8' },
     Breadcrumb { fg = '#a9a9a9', bg = norm_bg },
     ScrollbarSlider { bg = '#424242' },
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = '#001f33' },
+    PeekViewTitle { fg = white }, -- peekViewTitleLabel.foreground
     PeekViewCursorLine { bg = '#002f4e' },
     PeekViewMatchHighlight { bg ='#996214' }, -- peekViewEditor.matchHighlightBackground
     GhostText { fg = '#6b6b6b' },
     Icon { fg = '#c5c5c5' },
     Description { fg = '#989898' }, -- descriptionForeground
     ProgressBar { fg = '#0e70c0' }, -- progressBar.background
-    MatchedCharacters { fg = bright_blue }, -- editorSuggestWidget.highlightForeground
+    MatchedCharacters { fg = blue2 }, -- editorSuggestWidget.highlightForeground
     Hint { MatchedCharacters }, -- for the hint letter in options, e.g., the q in [q]uickfix
     -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
     -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
@@ -84,6 +88,9 @@ local theme = lush(function(injected_functions)
     QfFileName { fg = white },
     QfSelection { bg = '#3a3d41' }, -- terminal.inactiveSelectionBackground
     QfText { fg = '#bbbbbb' }, -- normal text in quickfix list
+    -- Inline hints
+    InlayHint { fg = '#969696', bg = '#232323' }, -- editorInlayHint.foreground/background
+    InlayHintType { InlayHint }, -- editorInlayHint.typeBackground/typeForeground
 
     --
     -- Editor
@@ -95,7 +102,7 @@ local theme = lush(function(injected_functions)
     Cursor { fg = gray, bg = '#aeafad' },
     -- lCursor { },
     -- CursorIM { },
-    Directory { fg = blue },
+    Directory { fg = dark_blue },
     DiffAdd { DiffLineAdded },
     DiffDelete { DiffLineDeleted },
     DiffChange { DiffLineChanged },
@@ -127,7 +134,7 @@ local theme = lush(function(injected_functions)
     PmenuSbar { bg = black2 },
     PmenuThumb { bg = '#474747' },
     NormalFloat { Pmenu },
-    Question { fg = blue },
+    Question { fg = dark_blue },
     QuickFixLine { QfSelection },
     Search { bg = '#613214' },
     SpecialKey { NonText },
@@ -140,7 +147,7 @@ local theme = lush(function(injected_functions)
     TabLine { fg = '#8f8f8f', bg = black },
     TabLineFill { fg = 'NONE', bg = black2 },
     TabLineSel { fg = white, bg = norm_bg },
-    Title { fg = blue, gui = 'bold' },
+    Title { fg = dark_blue, gui = 'bold' },
     Visual { bg = '#264F78' },
     -- VisualNOS { },
     WarningMsg { fg = warn_yellow },
@@ -154,8 +161,8 @@ local theme = lush(function(injected_functions)
     --
     Comment { fg = green, gui = 'italic' },
 
-    Constant { fg = blue },
-    String { fg = orange },
+    Constant { fg = dark_blue },
+    String { fg = brown },
     Character { Constant },
     Number { fg = light_green },
     Boolean { Constant },
@@ -164,21 +171,21 @@ local theme = lush(function(injected_functions)
     Identifier { fg = light_blue },
     Function { fg = yellow },
 
-    Statement { fg = pink },
+    Statement { fg = dark_pink },
     Conditional { Statement },
     Repeat { Statement },
     Label { Statement },
     Operator { fg = norm_fg },
-    Keyword { fg = blue },
+    Keyword { fg = dark_blue },
     Exception { Statement },
 
-    PreProc { fg = pink },
+    PreProc { fg = dark_pink },
     Include { PreProc },
     Define { PreProc },
     Macro { PreProc },
     PreCondit { PreProc },
 
-    Type { fg = blue },
+    Type { fg = dark_blue },
     StorageClass { Type },
     Structure { Type },
     Typedef { Type },
@@ -196,6 +203,15 @@ local theme = lush(function(injected_functions)
     Todo { fg = norm_bg, bg = yellow_orange, gui = 'bold' },
 
     --
+    -- diff
+    --
+    -- VSCode doesn't have foreground for git added/removed/changed, so here I
+    -- use the corresponding colors for gutter instead.
+    diffAdded { GutterGitAdded },
+    diffRemoved { GutterGitDeleted },
+    diffChanged { GutterGitModified },
+
+    --
     -- LSP
     --
     LspReferenceText { SelectionHighlightBackground },
@@ -204,6 +220,7 @@ local theme = lush(function(injected_functions)
     LspCodeLens { CodeLens },
     -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
     LspSignatureActiveParameter { MatchedCharacters },
+    LspInlayHint { InlayHint },
 
     --
     -- Diagnostics
@@ -257,12 +274,12 @@ local theme = lush(function(injected_functions)
     -- Punctuation
     sym("@punctuation.delimiter") { fg = norm_fg },
     sym("@punctuation.bracket") { fg = norm_fg },
-    sym("@punctuation.special") { fg = blue },
+    sym("@punctuation.special") { fg = dark_blue },
 
     -- Literals
     -- sym("@string") { },
-    sym("@string.documentation") { fg = orange },
-    sym("@string.regex") { fg = light_red },
+    sym("@string.documentation") { fg = brown },
+    sym("@string.regex") { fg = dark_red },
     sym("@string.escape") { fg = yellow_orange },
     -- sym("@string.special") { },
     -- sym("@character") { },
@@ -283,10 +300,10 @@ local theme = lush(function(injected_functions)
 
     -- Keyword
     sym("@keyword") { Keyword },
-    sym("@keyword.coroutine") { fg = pink },
-    sym("@keyword.function") { fg = blue },
+    sym("@keyword.coroutine") { fg = dark_pink },
+    sym("@keyword.function") { fg = dark_blue },
     sym("@keyword.operator") { fg = norm_fg },
-    sym("@keyword.return") { fg = pink },
+    sym("@keyword.return") { fg = dark_pink },
     -- sym("@conditional") { },
     -- sym("@conditional.ternary") { },
     -- sym("@repeat") { },
@@ -297,17 +314,17 @@ local theme = lush(function(injected_functions)
 
     -- Types
     sym("@type") { fg = blue_green },
-    sym("@type.builtin") { fg = blue },
+    sym("@type.builtin") { fg = dark_blue },
     sym("@type.definition") { fg = blue_green },
-    sym("@type.qualifier") { fg = blue },
-    sym("@storageclass") { fg = blue },
+    sym("@type.qualifier") { fg = dark_blue },
+    sym("@storageclass") { fg = dark_blue },
     sym("@attribute") { fg = blue_green },
     sym("@field") { fg = light_blue },
     sym("@property") { sym("@field") },
 
     -- Identifiers
     sym("@variable") { fg = light_blue },
-    sym("@variable.builtin") { fg = blue },
+    sym("@variable.builtin") { fg = dark_blue },
     -- sym("@constant") { },
     sym("@constant.builtin") { Constant },
     sym("@constant.macro") { Constant },
@@ -321,13 +338,13 @@ local theme = lush(function(injected_functions)
     sym("@text.underline") { fg = norm_fg, gui = 'underline' },
     sym("@text.strike") { fg = norm_fg, gui = 'strikethrough' },
     sym("@text.title") { Title, gui = 'bold' },
-    sym("@text.literal") { fg = orange },
+    sym("@text.literal") { fg = brown },
     -- sym("@text.quote") { },
     sym("@text.uri") { Tag },
     sym("@text.math") { fg = blue_green },
     -- sym("@text.environment") { },
     -- sym("@text.environment.name") { },
-    sym("@text.reference") { fg = orange },
+    sym("@text.reference") { fg = brown },
     sym("@text.todo") { Todo },
     sym("@text.note") { fg = info_blue },
     sym("@text.warning") { fg = warn_yellow },
@@ -336,7 +353,7 @@ local theme = lush(function(injected_functions)
     sym("@text.diff.delete") { DiffTextDeleted },
 
     -- Tags
-    sym("@tag") { fg = blue },
+    sym("@tag") { fg = dark_blue },
     sym("@tag.attribute") { fg = light_blue },
     sym("@tag.delimiter") { fg = gray3 },
 
@@ -360,30 +377,36 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.interface") { fg = blue_green },
     sym("@lsp.type.struct") { fg = blue_green },
     sym("@lsp.type.typeParameter") { fg = blue_green },
-    sym("@lsp.type.parameter") { fg = light_blue },
+    sym("@lsp.type.parameter") { fg = orange }, -- Use a conspicuous color for semantic parameters (VSCode uses the common light_blue)
     sym("@lsp.type.variable") { fg = light_blue },
     sym("@lsp.type.property") { fg = light_blue },
-    sym("@lsp.type.enumMember") { fg = blue2 },
+    sym("@lsp.type.enumMember") { fg = blue },
     -- sym("@lsp.type.event") { },  -- TODO: what is event property?
     sym("@lsp.type.function") { fg = yellow },
     sym("@lsp.type.method") { fg = yellow },
-    sym("@lsp.type.macro") { fg = blue },
-    sym("@lsp.type.keyword") { fg = blue },
-    sym("@lsp.type.modifier") { fg = blue },
+    sym("@lsp.type.macro") { fg = dark_blue },
+    sym("@lsp.type.keyword") { fg = dark_blue },
+    sym("@lsp.type.modifier") { fg = dark_blue },
     sym("@lsp.type.comment") { fg = green },
-    sym("@lsp.type.string") { fg = orange },
+    sym("@lsp.type.string") { fg = brown },
     sym("@lsp.type.number") { fg = light_green },
-    sym("@lsp.type.regexp") { fg = light_red },
+    sym("@lsp.type.regexp") { fg = dark_red },
     sym("@lsp.type.operator") { fg = norm_fg },
     sym("@lsp.type.decorator") { fg = yellow },
+    sym("@lsp.type.escapeSequence") { fg = yellow_orange },
+    sym("@lsp.type.formatSpecifier") { fg = light_blue },
+    sym("@lsp.type.builtinType") { fg = dark_blue },
+    sym("@lsp.type.typeAlias") { fg = blue_green },
+    sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
     sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
     sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
-    sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
-    sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
-    sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.macro") },
-    sym("@lsp.typemod.variable.readonly") { fg = blue2 },
-    sym("@lsp.typemod.property.readonly") { fg = blue2 },
+    sym("@lsp.typemod.variable.defaultLibrary") { dark_blue },
+    sym("@lsp.typemod.function.defaultLibrary") { Function },
+    sym("@lsp.typemod.method.defaultLibrary") { Function },
+    sym("@lsp.typemod.macro.defaultLibrary") { Function },
+    sym("@lsp.typemod.variable.readonly") { fg = blue },
+    sym("@lsp.typemod.property.readonly") { fg = blue },
+    sym("@lsp.typemod.keyword.async") { fg = dark_pink },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
     -- other lsps that inject tokens in comments.
     -- Ref: https://github.com/folke/tokyonight.nvim/pull/340
@@ -437,15 +460,6 @@ local theme = lush(function(injected_functions)
     SuggestWidgetSelect { bg = selection_blue },
 
     --
-    -- diff
-    --
-    -- VSCode doesn't have foreground for git added/removed/changed, so here I
-    -- use the corresponding colors for gutter instead.
-    diffAdded { GutterGitAdded },
-    diffRemoved { GutterGitDeleted },
-    diffChanged { GutterGitModified },
-
-    --
     -- Aerial
     --
     AerialTextIcon { CmpItemKindText },
@@ -473,6 +487,38 @@ local theme = lush(function(injected_functions)
     AerialEventIcon { CmpItemKindEvent },
     AerialOperatorIcon { CmpItemKindOperator },
     AerialTypeParameterIcon { CmpItemKindTypeParameter },
+
+    --
+    -- nvim-navic
+    --
+    NavicText { Winbar },
+    NavicIconsFile { CmpItemKindFile },
+    NavicIconsModule { CmpItemKindModule },
+    NavicIconsNamespace { NavicText },
+    NavicIconsPackage { NavicText },
+    NavicIconsClass { CmpItemKindClass },
+    NavicIconsMethod { CmpItemKindMethod },
+    NavicIconsProperty { CmpItemKindProperty },
+    NavicIconsField { CmpItemKindField },
+    NavicIconsConstructor { CmpItemKindConstructor },
+    NavicIconsEnum { CmpItemKindEnum },
+    NavicIconsInterface { CmpItemKindInterface },
+    NavicIconsFunction { CmpItemKindFunction },
+    NavicIconsVariable { CmpItemKindVariable },
+    NavicIconsConstant { CmpItemKindConstant },
+    NavicIconsString { NavicText },
+    NavicIconsNumber { NavicText },
+    NavicIconsBoolean { NavicText },
+    NavicIconsArray { NavicText },
+    NavicIconsObject { NavicText },
+    NavicIconsKey { NavicText },
+    NavicIconsNull { NavicText },
+    NavicIconsEnumMember { CmpItemKindEnumMember },
+    NavicIconsStruct { CmpItemKindStruct },
+    NavicIconsEvent { CmpItemKindEvent },
+    NavicIconsOperator { CmpItemKindOperator },
+    NavicIconsTypeParameter { CmpItemKindTypeParameter },
+    NavicSeparator { NavicText },
 
     --
     -- Gitsigns
@@ -558,17 +604,14 @@ local theme = lush(function(injected_functions)
     --
     BqfPreviewFloat { PeekViewNormal },
     BqfPreviewBorder { PeekViewBorder },
+    BqfPreviewTitle { PeekViewTitle },
+    BqfPreviewSbar { PmenuSbar },
+    BqfPreviewThumb { PmenuThumb },
     BqfPreviewCursor { Cursor },
     BqfPreviewCursorLine { PeekViewCursorLine },
     BqfPreviewRange { PeekViewMatchHighlight },
-    BqfPreviewBufLabel { fg = '#8f989e' }, -- descriptionForeground with PeekViewNormal's bg as the background
+    BqfPreviewBufLabel { Description },
     BqfSign { fg = blue_green },
-
-    --
-    -- Symbols-outline
-    --
-    FocusedSymbol { fg = white, bg = selection_blue },
-    SymbolsOutlineConnector { fg = '#585858' },
 
     --
     -- mg979/tabline.nvim
@@ -597,6 +640,49 @@ local theme = lush(function(injected_functions)
     THiddenSep { TabBorder },
     TExtraSep { TabBorder },
     TSpecialSep { TabBorder },
+
+    --
+    -- git-messenger.vim
+    --
+    gitmessengerHeader { fg = '#3794ff' },  -- textLink.activeForeground
+    gitmessengerPopupNormal { NormalFloat },
+    gitmessengerHash { NormalFloat },
+    gitmessengerHistory { NormalFloat },
+    gitmessengerEmail { NormalFloat },
+
+    --
+    -- nvim-treesitter-context
+    --
+    -- TreesitterContext { bg = black4 },
+    TreesitterContextLineNumber { fg = '#5d5d5d' }, -- 30% darker based on LineNr
+    TreesitterContextBottom { gui = 'underline', sp = FloatBorder.fg },
+
+    --
+    -- nvim-scrollview
+    --
+    ScrollView { ScrollbarSlider },
+    ScrollViewRestricted { ScrollView },
+    ScrollViewConflictsTop { DiffAdd },
+    ScrollViewConflictsMiddle { DiffAdd },
+    ScrollViewConflictsBottom { DiffAdd },
+    ScrollViewCursor { CursorLineNr },
+    ScrollViewDiagnosticsError { DiagnosticError },
+    ScrollViewDiagnosticsWarn { DiagnosticWarn },
+    ScrollViewDiagnosticsHint { DiagnosticHint },
+    ScrollViewDiagnosticsInfo { DiagnosticInfo },
+    ScrollViewSearch { fg = '#9e6a03' },
+
+    --
+    -- vim-floaterm
+    --
+    Floaterm { Normal },
+    FloatermBorder { FloatBorder },
+
+    --
+    -- quick-scope
+    --
+    QuickScopePrimary { fg = bright_pink, gui = 'underline', sp = bright_pink },
+    QuickScopeSecondary { fg = purple, gui = 'underline', sp = purple },
   }
 end)
 ---@diagnostic enable
