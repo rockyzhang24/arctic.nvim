@@ -63,6 +63,7 @@ local theme = lush(function(injected_functions)
     GutterGitModified { fg = '#0078d4' }, -- editorGutter.modifiedBackground
     Breadcrumb { fg = '#a9a9a9', bg = Normal.bg }, -- breadcrumb.foreground/background
     ScrollbarSlider { bg = '#434343' }, -- the slider on the scrollbar (scrollbarSlider.activeBackground)
+    ScrollbarSliderHover { bg = '#4f4f4f' }, -- scrollbarSlider.hoverBackground
     PeekViewBorder { fg = '#3794ff' },
     PeekViewNormal { bg = Normal.bg }, -- peekViewEditor.background
     PeekViewTitle { fg = white }, -- peekViewTitleLabel.foreground
@@ -675,6 +676,7 @@ local theme = lush(function(injected_functions)
     ScrollViewDiagnosticsHint { DiagnosticHint },
     ScrollViewDiagnosticsInfo { DiagnosticInfo },
     ScrollViewSearch { fg = '#9e6a03' },
+    ScrollViewHover { ScrollbarSliderHover },
 
     --
     -- vim-floaterm
