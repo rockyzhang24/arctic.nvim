@@ -382,7 +382,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.property") { fg = light_blue },
     sym("@lsp.type.enumMember") { fg = blue },
     -- sym("@lsp.type.event") { },  -- TODO: what is event property?
-        sym("@lsp.type.function") { fg = yellow },
+    sym("@lsp.type.function") { fg = yellow },
     sym("@lsp.type.method") { fg = yellow },
     sym("@lsp.type.macro") { fg = dark_blue },
     sym("@lsp.type.keyword") { fg = dark_blue },
@@ -583,8 +583,8 @@ local theme = lush(function(injected_functions)
     --
     -- indent-blankline
     --
-    IndentBlanklineChar { fg = indent_guide_fg },
-    IndentBlanklineScope { fg = indent_guide_scope_fg },
+    IblIndent { fg = indent_guide_fg },
+    IblScope { fg = indent_guide_scope_fg },
 
     --
     -- hlslens
