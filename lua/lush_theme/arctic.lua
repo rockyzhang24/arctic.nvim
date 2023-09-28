@@ -42,7 +42,7 @@ local selection_blue = '#04395e'
 local folded_blue = '#212d3a' -- editor.foldBackground
 local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
-local indent_guide_context_fg = '#707070'
+local indent_guide_scope_fg = '#707070'
 local label_fg = '#c8c8c8'
 
 ---@diagnostic disable
@@ -578,11 +578,7 @@ local theme = lush(function(injected_functions)
     -- indent-blankline
     --
     IndentBlanklineChar { fg = indent_guide_fg },
-    IndentBlanklineSpaceChar { IndentBlanklineChar },
-    IndentBlanklineSpaceCharBlankline { IndentBlanklineChar },
-    IndentBlanklineContextChar { fg = indent_guide_context_fg },
-    IndentBlanklineContextSpaceChar { IndentBlanklineContextChar },
-    IndentBlanklineContextStart { gui = 'underline', sp = indent_guide_context_fg },
+    IndentBlanklineScope { fg = indent_guide_scope_fg },
 
     --
     -- hlslens
