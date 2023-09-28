@@ -586,8 +586,8 @@ local theme = lush(function(injected_functions)
     --
     -- indent-blankline
     --
-    IndentBlanklineChar { fg = indent_guide_fg },
-    IndentBlanklineScope { fg = indent_guide_scope_fg },
+    IblIndent { fg = indent_guide_fg },
+    IblScope { fg = indent_guide_scope_fg },
 
     --
     -- hlslens
