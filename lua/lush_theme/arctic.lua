@@ -289,7 +289,7 @@ local theme = lush(function(injected_functions)
     -- sym("@float") { },
 
     -- Function
-    -- sym("@function") { },
+    sym("@function") { Function },
     sym("@function.builtin") { Function },
     sym("@function.call") { Function },
     sym("@function.macro") { Function },
@@ -325,7 +325,7 @@ local theme = lush(function(injected_functions)
     -- Identifiers
     sym("@variable") { fg = light_blue },
     sym("@variable.builtin") { fg = dark_blue },
-    -- sym("@constant") { },
+    sym("@constant") { Constant },
     sym("@constant.builtin") { Constant },
     sym("@constant.macro") { Constant },
     sym("@namespace") { fg = blue_green },
