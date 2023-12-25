@@ -218,7 +218,7 @@ local theme = lush(function(injected_functions)
     LspReferenceRead { SelectionHighlightBackground },
     LspReferenceWrite { SelectionHighlightBackground },
     LspCodeLens { CodeLens },
-    -- LspCodeLensSeparator { }, -- Used to color the seperator between two or more code lens.
+    -- LspCodeLensSeparator { }, -- Used to color the separator between two or more code lens.
     LspSignatureActiveParameter { MatchedCharacters },
     LspInlayHint { InlayHint },
 
