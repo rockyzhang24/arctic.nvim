@@ -263,7 +263,7 @@ local theme = lush(function(injected_functions)
     -- Identifiers
     sym("@variable") { fg = light_blue }, -- various variable names
     sym("@variable.builtin") { fg = dark_blue }, -- built-in variable names (e.g. `this`)
-    sym("variable.parameter") { fg = orange }, -- parameters of a function, use a conspicuous color (VSCode uses the common light_blue)
+    sym("@variable.parameter") { fg = orange }, -- parameters of a function, use a conspicuous color (VSCode uses the common light_blue)
     sym("@variable.member") { fg = light_blue }, -- object and struct fields
 
     sym("@constant") { Constant }, -- constant identifiers
@@ -358,8 +358,8 @@ local theme = lush(function(injected_functions)
     sym("@markup.environment") { fg = yellow }, -- environments (e.g. in LaTeX)
 
     sym("@markup.link") { fg = brown }, -- text references, footnotes, citations, etc.
-    sym("@markup.link.label") { sym("@markdown.link") }, -- non-url links
-    sym("@markup.link.url") { sym("@markdown.link") }, -- url links in markup
+    sym("@markup.link.label") { sym("@markup.link") }, -- non-url links
+    sym("@markup.link.url") { sym("@markup.link") }, -- url links in markup
 
     sym("@markup.raw") { fg = brown }, -- literal or verbatim text (e.g., inline code)
     sym("@markup.raw.block") { fg = norm_fg }, -- literal or verbatim text as a stand-alone block
@@ -410,7 +410,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.builtinType") { fg = dark_blue },
     sym("@lsp.type.typeAlias") { fg = blue_green },
     sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
-    sym("@lsp.type.lifetime") { sym("@storageclass") },
+    sym("@lsp.type.lifetime") { sym("@keyword.storage") },
     sym("@lsp.type.generic") { sym("@variable") },
     sym("@lsp.type.selfTypeKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.deriveHelper") { sym("@attribute") },
