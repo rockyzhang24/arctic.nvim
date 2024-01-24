@@ -264,7 +264,7 @@ local theme = lush(function(injected_functions)
     sym("@variable") { fg = light_blue }, -- various variable names
     sym("@variable.builtin") { fg = dark_blue }, -- built-in variable names (e.g. `this`)
     sym("@variable.parameter") { fg = orange }, -- parameters of a function, use a conspicuous color (VSCode uses the common light_blue)
-    sym("@variable.member") { fg = light_blue }, -- object and struct fields
+    sym("@variable.member") { fg = blue_green }, -- object and struct fields
 
     sym("@constant") { Constant }, -- constant identifiers
     sym("@constant.builtin") { Constant }, -- built-in constant values
@@ -382,60 +382,60 @@ local theme = lush(function(injected_functions)
     -- The help page :h lsp-semantic-highlight
     -- A short guide: https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
     -- Token types and modifiers are described here: https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
-    sym("@lsp.type.namespace") { fg = blue_green },
-    sym("@lsp.type.type") { fg = blue_green },
-    sym("@lsp.type.class") { fg = blue_green },
-    sym("@lsp.type.enum") { fg = blue_green },
-    sym("@lsp.type.interface") { fg = blue_green },
-    sym("@lsp.type.struct") { fg = blue_green },
-    sym("@lsp.type.typeParameter") { fg = blue_green },
-    sym("@lsp.type.parameter") { fg = orange }, -- Use a conspicuous color for semantic parameters (VSCode uses the common light_blue)
-    sym("@lsp.type.variable") { fg = light_blue },
-    sym("@lsp.type.property") { fg = light_blue },
+    sym("@lsp.type.namespace") { sym("@module") },
+    sym("@lsp.type.type") { sym("@type") },
+    sym("@lsp.type.class") { sym("@type") },
+    sym("@lsp.type.enum") { sym("@type") },
+    sym("@lsp.type.interface") { sym("@type") },
+    sym("@lsp.type.struct") { sym("@type") },
+    sym("@lsp.type.typeParameter") { sym("@type.definition") },
+    sym("@lsp.type.parameter") { sym("@variable.parameter") },
+    sym("@lsp.type.variable") { sym("@variable") },
+    sym("@lsp.type.property") { sym("@property") },
     sym("@lsp.type.enumMember") { fg = blue },
     -- sym("@lsp.type.event") { },  -- TODO: what is event property?
-    sym("@lsp.type.function") { fg = yellow },
-    sym("@lsp.type.method") { fg = yellow },
-    sym("@lsp.type.macro") { fg = dark_blue },
-    sym("@lsp.type.keyword") { fg = dark_blue },
-    sym("@lsp.type.modifier") { fg = dark_blue },
-    sym("@lsp.type.comment") { fg = green },
-    sym("@lsp.type.string") { fg = brown },
-    sym("@lsp.type.number") { fg = light_green },
-    sym("@lsp.type.regexp") { fg = dark_red },
-    sym("@lsp.type.operator") { fg = norm_fg },
-    sym("@lsp.type.decorator") { fg = yellow },
-    sym("@lsp.type.escapeSequence") { fg = yellow_orange },
+    sym("@lsp.type.function") { sym("@function") },
+    sym("@lsp.type.method") { sym("@function") },
+    sym("@lsp.type.macro") { sym("@constant.macro") },
+    sym("@lsp.type.keyword") { sym("@keyword") },
+    sym("@lsp.type.comment") { sym("@comment") },
+    sym("@lsp.type.string") { sym("@string") },
+    sym("@lsp.type.number") { sym("@number") },
+    sym("@lsp.type.regexp") { sym("@string.regexp") },
+    sym("@lsp.type.operator") { sym("@operator") },
+    sym("@lsp.type.decorator") { sym("@attribute") },
+    sym("@lsp.type.escapeSequence") { sym("@string.escape") },
     sym("@lsp.type.formatSpecifier") { fg = light_blue },
-    sym("@lsp.type.builtinType") { fg = dark_blue },
-    sym("@lsp.type.typeAlias") { fg = blue_green },
+    sym("@lsp.type.builtinType") { sym("@type.builtin") },
+    sym("@lsp.type.typeAlias") { sym("@type.definition") },
     sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
     sym("@lsp.type.lifetime") { sym("@keyword.storage") },
     sym("@lsp.type.generic") { sym("@variable") },
+    sym("@lsp.type.selfKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.selfTypeKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.deriveHelper") { sym("@attribute") },
-    sym("@lsp.typemod.type.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.typeAlias.defaultLibrary") { sym("@lsp.typemod.type.defaultLibrary") },
-    sym("@lsp.typemod.class.defaultLibrary") { fg = blue_green },
-    sym("@lsp.typemod.variable.defaultLibrary") { fg = dark_blue },
-    sym("@lsp.typemod.function.defaultLibrary") { Function },
-    sym("@lsp.typemod.method.defaultLibrary") { Function },
-    sym("@lsp.typemod.macro.defaultLibrary") { Function },
+    sym("@lsp.typemod.type.defaultLibrary") { sym("@type.builtin") },
+    sym("@lsp.typemod.typeAlias.defaultLibrary") { sym("@type.builtin") },
+    sym("@lsp.typemod.class.defaultLibrary") { sym("@type.builtin") },
+    sym("@lsp.typemod.variable.defaultLibrary") { sym("@variable.builtin") },
+    sym("@lsp.typemod.function.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.method.defaultLibrary") { sym("@function.builtin") },
+    sym("@lsp.typemod.macro.defaultLibrary") { sym("@function.builtin") },
     sym("@lsp.typemod.struct.defaultLibrary") { sym("@type.builtin") },
-    -- sym("@lsp.typemod.enum.defaultLibrary") {},
-    -- sym("@lsp.typemod.enumMember.defaultLibrary") {},
+    sym("@lsp.typemod.enum.defaultLibrary") { sym("@type.builtin") },
+    sym("@lsp.typemod.enumMember.defaultLibrary") { sym("@constant.builtin") },
     sym("@lsp.typemod.variable.readonly") { fg = blue },
     sym("@lsp.typemod.variable.callable") { sym("@function") },
     sym("@lsp.typemod.variable.static") { sym("@constant") },
     sym("@lsp.typemod.property.readonly") { fg = blue },
-    sym("@lsp.typemod.keyword.async") { fg = dark_pink },
+    sym("@lsp.typemod.keyword.async") { sym("@keyword.coroutine") },
     sym("@lsp.typemod.keyword.injected") { sym("@keyword") },
     -- Set injected highlights. Mainly for Rust doc comments and also works for
     -- other lsps that inject tokens in comments.
     -- Ref: https://github.com/folke/tokyonight.nvim/pull/340
-    sym("@lsp.typemod.operator.injected") { sym("@lsp.type.operator") },
-    sym("@lsp.typemod.string.injected") { sym("@lsp.type.string") },
-    sym("@lsp.typemod.variable.injected") { sym("@lsp.type.variable") },
+    sym("@lsp.typemod.operator.injected") { sym("@operator") },
+    sym("@lsp.typemod.string.injected") { sym("@string") },
+    sym("@lsp.typemod.variable.injected") { sym("@variable") },
 
     --
     -- nvim-lspconfig
