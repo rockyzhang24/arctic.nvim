@@ -266,7 +266,7 @@ local theme = lush(function(injected_functions)
     sym("@variable") { fg = light_blue }, -- various variable names
     sym("@variable.builtin") { fg = dark_blue }, -- built-in variable names (e.g. `this`)
     sym("@variable.parameter") { fg = orange }, -- parameters of a function, use a conspicuous color (VSCode uses the common light_blue)
-    sym("@variable.member") { fg = blue_green }, -- object and struct fields
+    sym("@variable.member") { fg = light_blue }, -- object and struct fields
 
     sym("@constant") { Constant }, -- constant identifiers
     sym("@constant.builtin") { Constant }, -- built-in constant values
@@ -378,6 +378,10 @@ local theme = lush(function(injected_functions)
     sym("@tag.attribute") { fg = light_blue }, -- XML tag attributes
     sym("@tag.delimiter") { fg = gray3 }, -- XML tag delimiters
 
+    -- Language specific
+    -- Lua
+    sym("@variable.member.lua") { fg = blue_green },
+
     --
     -- LSP semantic tokens
     --
@@ -438,6 +442,10 @@ local theme = lush(function(injected_functions)
     sym("@lsp.typemod.operator.injected") { sym("@operator") },
     sym("@lsp.typemod.string.injected") { sym("@string") },
     sym("@lsp.typemod.variable.injected") { sym("@variable") },
+
+    -- Language specific
+    -- Lua
+    sym("@lsp.type.property.lua") { sym("@variable.member.lua") },
 
     --
     -- nvim-lspconfig
