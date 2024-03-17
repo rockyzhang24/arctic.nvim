@@ -266,6 +266,7 @@ local theme = lush(function(injected_functions)
     sym("@variable") { fg = light_blue }, -- various variable names
     sym("@variable.builtin") { fg = dark_blue }, -- built-in variable names (e.g. `this`)
     sym("@variable.parameter") { fg = orange }, -- parameters of a function, use a conspicuous color (VSCode uses the common light_blue)
+    sym("@variable.parameter.builtin") { sym("@variable.parameter") }, -- special parameters (e.g. `_`, `it`)
     sym("@variable.member") { fg = light_blue }, -- object and struct fields
 
     sym("@constant") { Constant }, -- constant identifiers
@@ -297,9 +298,9 @@ local theme = lush(function(injected_functions)
     sym("@type") { fg = blue_green }, -- type or class definitions and annotations
     sym("@type.builtin") { fg = dark_blue }, -- built-in types
     sym("@type.definition") { fg = blue_green }, -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
-    sym("@type.qualifier") { fg = dark_blue }, -- type qualifiers (e.g. `const`)
 
     sym("@attribute") { fg = blue_green }, -- attribute annotations (e.g. Python decorators)
+    sym("@attribute.builtin") { sym("@attribute") }, -- builtin annotations (e.g. `@property` in Python)
     sym("@property") { sym("@variable.member") }, -- the key in key/value pairs
 
     -- Function
@@ -320,7 +321,8 @@ local theme = lush(function(injected_functions)
     sym("@keyword.function") { fg = dark_blue }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
     sym("@keyword.operator") { sym("@operator") }, -- operators that are English words (e.g. `and` / `or`)
     sym("@keyword.import") { Include }, -- keywords for including modules (e.g. `import` / `from` in Python)
-    sym("@keyword.storage") { StorageClass }, -- modifiers that affect storage in memory or life-time
+    sym("@keyword.type") { fg = dark_blue }, -- keywords describing composite types (e.g. `struct`, `enum`)
+    sym("@keyword.modifier") { fg = dark_blue }, -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
     sym("@keyword.repeat") { Repeat }, -- keywords related to loops (e.g. `for` / `while`)
     sym("@keyword.return") { fg = dark_pink }, --  keywords like `return` and `yield`
     sym("@keyword.debug") { Debug }, -- keywords related to debugging
@@ -354,10 +356,15 @@ local theme = lush(function(injected_functions)
     sym("@markup.underline") { fg = norm_fg, gui = 'underline' }, -- underlined text (only for literal underline markup!)
 
     sym("@markup.heading") { Title }, -- headings, titles (including markers)
+    sym("@markup.heading.1") { sym("@markup.heading") },
+    sym("@markup.heading.2") { sym("@markup.heading") },
+    sym("@markup.heading.3") { sym("@markup.heading") },
+    sym("@markup.heading.4") { sym("@markup.heading") },
+    sym("@markup.heading.5") { sym("@markup.heading") },
+    sym("@markup.heading.6") { sym("@markup.heading") },
 
     sym("@markup.quote") { fg = green }, -- block quotes
     sym("@markup.math") { fg = blue_green }, -- math environments (e.g. `$ ... $` in LaTeX)
-    sym("@markup.environment") { fg = yellow }, -- environments (e.g. in LaTeX)
 
     sym("@markup.link") { fg = brown }, -- text references, footnotes, citations, etc.
     sym("@markup.link.label") { sym("@markup.link") }, -- non-url links
@@ -375,6 +382,7 @@ local theme = lush(function(injected_functions)
     sym("@diff.delta") { DiffTextChanged }, -- changed text (for diff files)
 
     sym("@tag") { fg = dark_blue }, -- XML tag names
+    sym("@tag.builtin") { sym("@tag") }, -- builtin tag names (e.g. HTML5 tags)
     sym("@tag.attribute") { fg = light_blue }, -- XML tag attributes
     sym("@tag.delimiter") { fg = gray3 }, -- XML tag delimiters
 
@@ -391,7 +399,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.namespace") { sym("@module") },
     sym("@lsp.type.type") { sym("@type") },
     sym("@lsp.type.class") { sym("@type") },
-    sym("@lsp.type.enum") { sym("@type") },
+    sym("@lsp.type.enum") { sym("@keyword.type") },
     sym("@lsp.type.interface") { sym("@type") },
     sym("@lsp.type.struct") { sym("@type") },
     sym("@lsp.type.typeParameter") { sym("@type.definition") },
@@ -420,7 +428,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.selfKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.selfTypeKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.deriveHelper") { sym("@attribute") },
-    sym("@lsp.type.modifier") { sym("@type.qualifier") },
+    sym("@lsp.type.modifier") { sym("@keyword.modifier") },
     sym("@lsp.typemod.type.defaultLibrary") { sym("@type.builtin") },
     sym("@lsp.typemod.typeAlias.defaultLibrary") { sym("@type.builtin") },
     sym("@lsp.typemod.class.defaultLibrary") { sym("@type.builtin") },
