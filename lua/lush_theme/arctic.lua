@@ -397,7 +397,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.variable") { sym("@variable") },
     sym("@lsp.type.property") { sym("@property") },
     sym("@lsp.type.enumMember") { fg = blue },
-    -- sym("@lsp.type.event") { },  -- TODO: what is event property?
+    sym("@lsp.type.event") { sym("@type") },
     sym("@lsp.type.function") { sym("@function") },
     sym("@lsp.type.method") { sym("@function") },
     sym("@lsp.type.macro") { sym("@constant.macro") },
@@ -418,6 +418,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.selfKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.selfTypeKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.deriveHelper") { sym("@attribute") },
+    sym("@lsp.type.modifier") { sym("@type.qualifier") },
     sym("@lsp.typemod.type.defaultLibrary") { sym("@type.builtin") },
     sym("@lsp.typemod.typeAlias.defaultLibrary") { sym("@type.builtin") },
     sym("@lsp.typemod.class.defaultLibrary") { sym("@type.builtin") },
