@@ -423,7 +423,7 @@ local theme = lush(function(injected_functions)
     sym("@lsp.type.builtinType") { sym("@type.builtin") },
     sym("@lsp.type.typeAlias") { sym("@type.definition") },
     sym("@lsp.type.unresolvedReference") { gui = 'undercurl', sp = error_red },
-    sym("@lsp.type.lifetime") { sym("@keyword.storage") },
+    sym("@lsp.type.lifetime") { sym("@keyword.modifier") },
     sym("@lsp.type.generic") { sym("@variable") },
     sym("@lsp.type.selfKeyword") { sym("@variable.builtin") },
     sym("@lsp.type.selfTypeKeyword") { sym("@variable.builtin") },
