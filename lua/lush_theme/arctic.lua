@@ -45,6 +45,7 @@ local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
 local indent_guide_scope_fg = '#707070'
 local label_fg = '#c8c8c8'
+local tab_border_fg = '#2b2b2b'
 
 ---@diagnostic disable
 local theme = lush(function(injected_functions)
@@ -54,7 +55,7 @@ local theme = lush(function(injected_functions)
     --
     -- Preset
     --
-    TabBorder { fg = '#2b2b2b' }, -- tab.border
+    TabBorder { fg = tab_border_fg }, -- tab.border
     FloatBorder { fg = float_border_fg },
     SelectionHighlightBackground { bg = '#343a41' }, -- editor.selectionHighlightBackground
     LightBulb { fg = '#ffcc00' }, -- editorLightBulb.foreground
@@ -148,9 +149,9 @@ local theme = lush(function(injected_functions)
     SpellRare  { gui = 'undercurl', sp = info_blue  },
     StatusLine { bg = black4 },
     StatusLineNC { fg = gray, bg = black4 },
-    TabLine { fg = gray4, bg = black4 }, -- tab.inactiveBackground, tab.inactiveForeground
-    TabLineFill { fg = 'NONE', bg = black4 }, -- editorGroupHeader.tabsBackground
-    TabLineSel { fg = white, bg = Normal.bg }, -- tab.activeBackground, tab.activeForeground
+    TabLine { fg = gray4, bg = black4, gui = 'underline', sp = tab_border_fg }, -- tab.inactiveBackground, tab.inactiveForeground
+    TabLineFill { fg = 'NONE', bg = black4, gui = 'underline', sp = tab_border_fg }, -- editorGroupHeader.tabsBackground
+    TabLineSel { fg = white, bg = Normal.bg, gui = 'bold, underline', sp = tab_border_fg  }, -- tab.activeBackground, tab.activeForeground
     Title { fg = dark_blue, gui = 'bold' },
     Visual { bg = '#264F78' }, -- editor.selectionBackground
     -- VisualNOS { },
