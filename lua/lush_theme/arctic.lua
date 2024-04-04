@@ -320,7 +320,7 @@ local theme = lush(function(injected_functions)
     sym("@keyword") { Keyword }, -- keywords not fitting into specific categories
     sym("@keyword.coroutine") { fg = dark_pink }, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
     sym("@keyword.function") { fg = dark_blue }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
-    sym("@keyword.operator") { sym("@operator") }, -- operators that are English words (e.g. `and` / `or`)
+    sym("@keyword.operator") { fg = dark_blue }, -- operators that are English words (e.g. `and` / `or`)
     sym("@keyword.import") { Include }, -- keywords for including modules (e.g. `import` / `from` in Python)
     sym("@keyword.type") { fg = dark_blue }, -- keywords describing composite types (e.g. `struct`, `enum`)
     sym("@keyword.modifier") { fg = dark_blue }, -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
