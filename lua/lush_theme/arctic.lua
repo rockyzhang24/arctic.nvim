@@ -15,7 +15,6 @@ local green = '#6A9955'
 local blue_green = '#4EC9B0'
 local light_green = '#B5CEA8'
 local blue = '#4fc1ff'
-local blue2 = '#2aaaff'
 local light_blue = '#9CDCFE'
 local dark_blue = '#569CD6'
 local cornflower_blue = '#6796E6'
@@ -39,7 +38,8 @@ local info_blue = '#3794ff'
 local hint_gray = '#B0B0B0'
 local ok_green = '#89d185' -- color for success, so I use notebookStatusSuccessIcon.foreground
 
-local selection_blue = '#04395e'
+local selected_item_bg = '#04395e'
+local matched_chars = '#2aaaff'
 local folded_blue = '#212d3a' -- editor.foldBackground
 local float_border_fg = '#454545'
 local indent_guide_fg = '#404040'
@@ -75,7 +75,7 @@ local theme = lush(function(injected_functions)
     Icon { fg = '#cccccc' }, -- icon.foreground
     Description { fg = gray4 }, -- descriptionForeground
     ProgressBar { fg = '#0078d4' }, -- progressBar.background
-    MatchedCharacters { fg = blue2 }, -- editorSuggestWidget.highlightForeground
+    MatchedCharacters { fg = matched_chars }, -- editorSuggestWidget.highlightForeground
     Hint { MatchedCharacters }, -- for the hint letter in options, e.g., the q in [q]uickfix
     -- For the unused code, use Identifier's fg (9cdcfe) as the base color,
     -- editorUnnecessaryCode.opacity is 000000aa (the alpha value is aa),
@@ -135,9 +135,15 @@ local theme = lush(function(injected_functions)
     Normal { fg = norm_fg, bg = norm_bg },
     -- NormalNC { },
     Pmenu { fg = norm_fg, bg = Normal.bg }, -- editorSuggestWidget.background/foreground
-    PmenuSel { fg = white, bg = selection_blue },
+    PmenuSel { fg = white, bg = selected_item_bg },
+    -- PmenuKind = {},
+    -- PmenuKindSel = {},
+    -- PmenuExtra = {},
+    -- PmenuExtraSel = {},
     PmenuSbar { bg = Normal.bg },
     PmenuThumb { ScrollbarSlider },
+    PmenuMatch = { fg = matched_chars, bg = norm_bg },
+    PmenuMatchSel = { fg = matched_chars, bg = selected_item_bg, bold = true },
     NormalFloat { Pmenu },
     Question { fg = dark_blue },
     QuickFixLine { QfSelection },
@@ -470,7 +476,7 @@ local theme = lush(function(injected_functions)
     -- nvim-cmp
     --
     CmpItemAbbrDeprecated { fg = gray3, bg = 'NONE', gui = 'strikethrough' },
-    CmpItemAbbrMatch { MatchedCharacters, bg = 'NONE' },
+    CmpItemAbbrMatch { fg = matched_chars, bg = 'NONE' },
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch },
     CmpItemMenu { Description },
     CmpItemKindText { fg = '#cccccc', bg = 'NONE' },
@@ -500,7 +506,7 @@ local theme = lush(function(injected_functions)
     CmpItemKindTypeParameter { CmpItemKindText },
     -- Predefined for the winhighlight config of cmp float window
     SuggestWidgetBorder { FloatBorder },
-    SuggestWidgetSelect { bg = selection_blue },
+    SuggestWidgetSelect { bg = selected_item_bg },
 
     --
     -- Aerial
